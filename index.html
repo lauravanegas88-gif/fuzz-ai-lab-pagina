@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fuzz-AI Lab · Un equipo de 15 Fuzzies</title>
+<meta name="description" content="Un equipo de 15 Fuzzies. Cada uno resuelve un problema de tu negocio: investigación, estrategia, contenido, distribución y medición.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Figtree:wght@400;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crema: #E8DCC4;
+    --crema-claro: #F3EBDA;
+    --burdeos: #6E1E2A;
+    --tinta: #2A1F1A;
+    --tinta-suave: #5A4A41;
+    --linea: #CDBE9F;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --crema: #2A221D;
+      --crema-claro: #342A23;
+      --burdeos: #E7A7B0;
+      --tinta: #F3EBDA;
+      --tinta-suave: #CDBE9F;
+      --linea: #4A3D34;
+    }
+  }
+  :root[data-theme="dark"] {
+    --crema: #2A221D;
+    --crema-claro: #342A23;
+    --burdeos: #E7A7B0;
+    --tinta: #F3EBDA;
+    --tinta-suave: #CDBE9F;
+    --linea: #4A3D34;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--crema);
+    color: var(--tinta);
+    font-family: "Figtree", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+  header { padding: 40px 0 24px; text-align: center; }
+  .logo {
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 900;
+    font-size: clamp(34px, 8vw, 64px);
+    letter-spacing: .02em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .logo span { color: var(--burdeos); }
+  h1 {
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 900;
+    font-size: clamp(30px, 6vw, 52px);
+    line-height: 1.05;
+    margin: 36px 0 12px;
+    text-align: center;
+  }
+  .lead { text-align: center; color: var(--tinta-suave); margin: 0 auto 8px; max-width: 640px; }
+  h2 {
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    margin: 48px 0 14px;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+  }
+  .grupo { margin-bottom: 22px; }
+  .grupo h3 {
+    font-size: 13px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--burdeos);
+    margin: 0 0 8px;
+  }
+  .fuzz {
+    background: var(--crema-claro);
+    border: 1px solid var(--linea);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .fuzz strong { font-size: 18px; }
+  .fuzz p { margin: 4px 0 0; }
+  .resultado { color: var(--tinta-suave); }
+  .beneficios { list-style: none; padding: 0; margin: 0; }
+  .beneficios li {
+    border-top: 1px solid var(--linea);
+    padding: 14px 0;
+  }
+  .beneficios li strong { display: block; font-size: 18px; margin-bottom: 2px; }
+  .ahorro {
+    background: var(--tinta);
+    color: var(--crema);
+    border-radius: 18px;
+    padding: 26px 22px;
+    margin-top: 48px;
+  }
+  .ahorro h2 { color: var(--crema); margin-top: 0; }
+  .ahorro ul { padding-left: 20px; }
+  .ahorro li { margin-bottom: 10px; }
+  .ahorro .cierre {
+    font-family: "Caveat", cursive;
+    font-size: 30px;
+    color: var(--crema);
+    margin: 14px 0 0;
+  }
+  .ahorro .cierre { color: #E7A7B0; }
+  footer {
+    text-align: center;
+    color: var(--tinta-suave);
+    font-size: 14px;
+    padding: 48px 0 56px;
+  }
+  @media (max-width: 480px) {
+    body { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><span>The</span> Fuzz-AI Lab</div>
+  </header>
+
+  <h1>Un equipo de 15 Fuzzies.<br>Cada uno resuelve un problema de tu negocio.</h1>
+
+  <h2>Quiénes son</h2>
+
+  <div class="grupo">
+    <h3>Investigación</h3>
+    <div class="fuzz"><strong>Chispa</strong><p>Detecta las noticias de tu nicho que la gente está comentando, para que siempre tengas de qué hablar.</p><p class="resultado">Resultado: contenido con tema y momento.</p></div>
+    <div class="fuzz"><strong>Travieso</strong><p>Encuentra qué están vendiendo otros negocios de tu sector y qué le duele a tu cliente con sus palabras.</p><p class="resultado">Resultado: sabes qué decir antes de publicar.</p></div>
+  </div>
+
+  <div class="grupo">
+    <h3>Estrategia</h3>
+    <div class="fuzz"><strong>Nube</strong><p>Convierte tus objetivos en un plan del mes: qué se publica, cuánto y cuándo.</p><p class="resultado">Resultado: dejas de improvisar.</p></div>
+    <div class="fuzz"><strong>Productor</strong><p>Ordena la producción de reels para que no se atrasen ni se pisen.</p><p class="resultado">Resultado: entregas a tiempo sin correr el último día.</p></div>
+  </div>
+
+  <div class="grupo">
+    <h3>Contenido</h3>
+    <div class="fuzz"><strong>Chula</strong><p>Escribe textos para redes, guiones y correos con el tono de tu marca.</p><p class="resultado">Resultado: publicas sin quedarte en blanco.</p></div>
+    <div class="fuzz"><strong>Pixel</strong><p>Diseña carruseles, portadas e imágenes con tu identidad.</p><p class="resultado">Resultado: tu marca se ve igual en todo.</p></div>
+    <div class="fuzz"><strong>Rayo</strong><p>Edita tus reels, con cortes, subtítulos y versiones cortas.</p><p class="resultado">Resultado: videos listos sin pasar horas en el editor.</p></div>
+    <div class="fuzz"><strong>Escenas</strong><p>Arma el guion visual de cada reel con tus personajes y escenas.</p><p class="resultado">Resultado: videos coherentes con tu marca, sin improvisar.</p></div>
+    <div class="fuzz"><strong>Zén</strong><p>Revisa que cada pieza suene y se vea como tú.</p><p class="resultado">Resultado: te llega revisado, con tu voz y tu identidad.</p></div>
+  </div>
+
+  <div class="grupo">
+    <h3>Distribución</h3>
+    <div class="fuzz"><strong>Soli</strong><p>Mantiene tu calendario publicado y deja borradores de respuesta para tus comentarios.</p><p class="resultado">Resultado: tu cuenta se mantiene activa sin estar conectado todo el día.</p></div>
+    <div class="fuzz"><strong>Pícaro</strong><p>Revisa tus anuncios de Meta, dice qué funciona y propone cambios.</p><p class="resultado">Resultado: cada peso de pauta se mueve hacia lo que mejor responde; nada se cambia sin tu aprobación.</p></div>
+    <div class="fuzz"><strong>Cosmos</strong><p>Prepara tus correos de bienvenida, cartas y avisos.</p><p class="resultado">Resultado: tu lista recibe mensajes a tiempo y con tu voz.</p></div>
+    <div class="fuzz"><strong>Lulo</strong><p>Lleva las decisiones importantes a tu celular.</p><p class="resultado">Resultado: no te pierdes lo urgente aunque estés lejos de la pantalla.</p></div>
+  </div>
+
+  <div class="grupo">
+    <h3>Medición y mejora</h3>
+    <div class="fuzz"><strong>Mimo</strong><p>Cada lunes te dice qué contenido y qué anuncios funcionaron, con las cifras de Meta.</p><p class="resultado">Resultado: sabes qué repetir y qué dejar.</p></div>
+    <div class="fuzz"><strong>Nexo</strong><p>Arma las páginas y landings que recogen a tus clientes.</p><p class="resultado">Resultado: una página lista para captar, sin depender de un programador.</p></div>
+  </div>
+
+  <h2>Lo que cambia para tu negocio</h2>
+  <ul class="beneficios">
+    <li><strong>Un solo equipo responde por todo.</strong>Ya no tienes que coordinar a un diseñador, un editor, un community y un analista. Hablas con un solo equipo y un solo responsable.</li>
+    <li><strong>Tu marca suena igual en todo.</strong>Los textos, los diseños, los videos y los correos salen con la misma voz. Eso es lo que la gente recuerda.</li>
+    <li><strong>Tu tiempo vuelve a ti.</strong>Dejas de escribir, diseñar, editar y revisar cada cifra tú solo. Lo que te toca es decidir.</li>
+    <li><strong>Lo que no funciona se ve pronto.</strong>Cada semana sabes qué contenido y qué anuncios trajeron atención, y qué dejar de hacer.</li>
+    <li><strong>Tu inversión en publicidad se mueve hacia lo que funciona.</strong>Nada se cambia sin tu aprobación, y los cambios salen con su razón.</li>
+    <li><strong>Crecer no te obliga a contratar.</strong>Si tu negocio sube, el equipo sigue trabajando con la misma estructura, sin tener que buscar y entrenar a más personas.</li>
+    <li><strong>Nada depende de una sola persona.</strong>Si alguien se enferma o se va, el trabajo sigue. No pierdes semanas ni conocimiento.</li>
+    <li><strong>Tu cuenta nunca queda sola.</strong>La publicación, los comentarios y los correos tienen una rutina diaria, no un "cuando alguien tenga tiempo".</li>
+    <li><strong>Tú decides, ellos ejecutan.</strong>Cada propuesta llega con su razón, y tú das el sí antes de que algo salga.</li>
+  </ul>
+
+  <section class="ahorro">
+    <h2>Lo que ya gastas en tiempo y en dinero, repartido en cinco lugares. Aquí lo recuperas.</h2>
+    <p>Hacerlo por separado cuesta más de lo que parece: reuniones con cada proveedor, preguntas de "¿ya salió?", correcciones y cifras que nadie junta. Si decides trabajar con un solo equipo, te quedas con:</p>
+    <ul>
+      <li><strong>Menos reuniones y menos mensajes.</strong> Cero "¿ya está?".</li>
+      <li><strong>Un solo lugar para revisar.</strong> Sabes qué funcionó, qué dejar y qué subir, sin esperar a que alguien te lo cuente.</li>
+      <li><strong>Un solo responsable.</strong> Hablas con un equipo, no con cuatro proveedores distintos.</li>
+    </ul>
+    <p class="cierre">Gana quien decide con un solo equipo.</p>
+  </section>
+
+  <footer>The Fuzz-AI Lab · estratega.site/lab</footer>
+</div>
+</body>
+</html>
