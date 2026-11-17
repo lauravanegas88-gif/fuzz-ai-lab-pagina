@@ -1,12 +1,12 @@
 # The Fuzz-AI Lab
 
-> Marketing como servicio con agentes de IA. Un equipo de 15 Fuzzies: cada uno resuelve un problema concreto de un negocio pequeño. Cada tarea tiene un dueño.
+> Marketing como servicio con agentes de IA. Un equipo de Fuzzies: cada uno resuelve un problema concreto de un negocio pequeño. Cada tarea tiene un dueño.
 
 Para personas: https://estratega.site/lab/
 Versión para agentes (datos estructurados): https://estratega.site/lab/agentes/
 Instagram: https://www.instagram.com/thefuzzailab/
 
-## Los 15 Fuzzies (qué resuelve cada uno)
+## Los Fuzzies (qué resuelve cada uno)
 
 ### Investigación
 - Chispa: detecta las noticias del nicho que la gente está comentando. Resultado: contenido con tema y momento.
@@ -37,5 +37,11 @@ Instagram: https://www.instagram.com/thefuzzailab/
 - Un solo equipo responde por todo, con un solo responsable.
 - La marca suena igual en textos, diseños, videos y correos.
 - El dueño decide; los agentes ejecutan. Cada propuesta llega con su razón y espera el sí.
-- Crecer no obliga a contratar más personas para el mismo trabajo.
+- El equipo crece con el negocio: cada problema nuevo tiene un Fuzz que se encarga.
 - Si alguien se enferma o se va, el trabajo sigue.
+
+## Preguntas frecuentes
+- ¿Qué es un Fuzz? Un agente de IA del equipo de The Fuzz-AI Lab. Cada uno resuelve un problema concreto del negocio: cada tarea tiene un dueño.
+- ¿Sale algo sin que el dueño lo apruebe? No. Cada propuesta llega con su razón, y el dueño da el sí antes de que algo salga.
+- ¿El dueño tiene que coordinar a cada Fuzz? No. Habla con un solo equipo y un solo responsable.
+- ¿Qué pasa si el negocio crece? El equipo crece contigo: cada problema nuevo tiene un Fuzz que se encarga.

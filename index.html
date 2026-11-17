@@ -3,8 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Fuzz-AI Lab · Un equipo de 15 Fuzzies</title>
-<meta name="description" content="Un equipo de 15 Fuzzies. Cada uno resuelve un problema de tu negocio: investigación, estrategia, contenido, distribución y medición.">
+<title>The Fuzz-AI Lab · Un equipo de Fuzzies</title>
+<meta name="description" content="Marketing como servicio con agentes de IA. Un equipo de Fuzzies: cada uno resuelve un problema de tu negocio. Cada tarea tiene un dueño.">
+<link rel="canonical" href="https://estratega.site/lab/">
+<link rel="alternate" type="text/plain" href="https://estratega.site/lab/llms.txt" title="llms.txt">
+<meta property="og:title" content="The Fuzz-AI Lab · Un equipo de Fuzzies">
+<meta property="og:description" content="Cada uno resuelve un problema de tu negocio. Cada tarea tiene un dueño.">
+<meta property="og:image" content="https://estratega.site/lab/lab-portada.png">
+<meta property="og:url" content="https://estratega.site/lab/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://estratega.site/lab/#org",
+      "name": "The Fuzz-AI Lab",
+      "url": "https://estratega.site/lab/",
+      "logo": "https://estratega.site/lab/lab-portada.png",
+      "description": "Marketing como servicio con agentes de IA: un equipo de Fuzzies, cada uno resuelve un problema de un negocio pequeño.",
+      "sameAs": ["https://www.instagram.com/thefuzzailab/"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://estratega.site/lab/#web",
+      "name": "The Fuzz-AI Lab",
+      "url": "https://estratega.site/lab/",
+      "inLanguage": "es",
+      "publisher": {"@id": "https://estratega.site/lab/#org"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "¿Qué es un Fuzz?", "acceptedAnswer": {"@type": "Answer", "text": "Un agente de IA del equipo de The Fuzz-AI Lab. Cada uno resuelve un problema concreto de tu negocio: cada tarea tiene un dueño."}},
+        {"@type": "Question", "name": "¿Sale algo sin que yo lo apruebe?", "acceptedAnswer": {"@type": "Answer", "text": "No. Cada propuesta llega con su razón, y tú das el sí antes de que algo salga."}},
+        {"@type": "Question", "name": "¿Tengo que coordinar a cada Fuzz?", "acceptedAnswer": {"@type": "Answer", "text": "No. Hablas con un solo equipo y un solo responsable."}},
+        {"@type": "Question", "name": "¿Qué pasa si mi negocio crece?", "acceptedAnswer": {"@type": "Answer", "text": "El equipo crece contigo: cada problema nuevo tiene un Fuzz que se encarga."}}
+      ]
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Figtree:wght@400;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
@@ -17,7 +56,7 @@
     --tinta-suave: #5A4A41;
     --linea: #CDBE9F;
     --acento: #6E1E2A;
-    --acento-texto: #F3EBDA;
+    --burbuja: #FFFFFF;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -28,7 +67,7 @@
       --tinta-suave: #CDBE9F;
       --linea: #4A3D34;
       --acento: #E7A7B0;
-      --acento-texto: #2A1F1A;
+      --burbuja: #3E332B;
     }
   }
   :root[data-theme="dark"] {
@@ -39,9 +78,10 @@
     --tinta-suave: #CDBE9F;
     --linea: #4A3D34;
     --acento: #E7A7B0;
-    --acento-texto: #2A1F1A;
+    --burbuja: #3E332B;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   html, body { margin: 0; }
   body {
     background: var(--crema);
@@ -51,10 +91,17 @@
     line-height: 1.55;
   }
   a { color: inherit; }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
 
-  /* Encabezado: letrero de colores en píldora oscura */
-  .hero { text-align: center; padding: 48px 0 32px; }
+  /* Barra superior */
+  .barra { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; gap: 12px; }
+  .marca-mini { font-family: "Big Shoulders Display", sans-serif; font-weight: 900; font-size: 22px; letter-spacing: .02em; text-decoration: none; }
+  .barra nav { display: flex; gap: 18px; align-items: center; font-weight: 600; font-size: 15px; }
+  .barra nav a { text-decoration: none; }
+  @media (max-width: 640px) { .barra nav .ocultar { display: none; } }
+
+  /* Hero */
+  .hero { text-align: center; padding: 24px 0 8px; }
   .letrero {
     display: inline-block;
     background: var(--pildora);
@@ -62,210 +109,307 @@
     padding: 18px 40px 14px;
     font-family: "Big Shoulders Display", sans-serif;
     font-weight: 900;
-    font-size: clamp(44px, 9vw, 92px);
+    font-size: clamp(42px, 9vw, 88px);
     line-height: 1;
     letter-spacing: .02em;
     white-space: nowrap;
   }
-  .letrero .t1 { color: #FF9A3C; }
-  .letrero .t2 { color: #B8BFE0; }
-  .letrero .t3 { color: #FF6FA8; }
-  .letrero .t4 { color: #3DD6C0; }
-  .letrero .t5 { color: #4A7CFF; }
-  .letrero .t6 { color: #FF4B4B; }
-  .letrero .t7 { color: #F3E3C3; }
-  .letrero .t8 { color: #FFD23F; }
-  .letrero .t9 { color: #8BD94A; }
-  .letrero .t10 { color: #59B3E6; }
-  .lema { font-size: clamp(20px, 3.4vw, 28px); font-weight: 700; margin: 22px 0 6px; }
-  .sub { font-size: 14px; letter-spacing: .16em; text-transform: uppercase; color: var(--tinta-suave); margin: 0; }
+  .hero h1 {
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 900;
+    font-size: clamp(34px, 6.5vw, 64px);
+    line-height: 1.02;
+    margin: 28px auto 12px;
+    max-width: 860px;
+  }
+  .hero .bajada { font-size: clamp(18px, 2.6vw, 22px); color: var(--tinta-suave); margin: 0 auto; max-width: 640px; }
+  .sello { font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--tinta-suave); margin: 18px 0 0; }
+  .foto { margin: 28px auto 0; max-width: 900px; }
+  .foto img { display: block; width: 100%; height: auto; border-radius: 20px; }
 
-  .foto { margin: 28px auto 0; max-width: 820px; }
-  .foto img { display: block; width: 100%; height: auto; border-radius: 18px; }
-
-  .botones { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 28px 0 0; }
+  .botones { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 26px 0 0; }
   .btn {
     display: inline-block;
-    padding: 14px 24px;
+    padding: 14px 26px;
     border-radius: 999px;
     font-weight: 700;
     text-decoration: none;
-    border: 2px solid var(--pildora);
+    border: 2px solid var(--tinta);
     transition: transform .15s ease;
   }
   .btn:hover { transform: translateY(-2px); }
-  .btn-primario { background: var(--pildora); color: #F3EBDA; }
+  .btn-primario { background: var(--pildora); color: #F3EBDA; border-color: var(--pildora); }
   .btn-secundario { background: transparent; color: var(--tinta); }
+  .btn-chico { padding: 9px 18px; font-size: 15px; }
 
-  h1 {
+  section { padding: 72px 0 0; }
+  .titulo {
     font-family: "Big Shoulders Display", sans-serif;
     font-weight: 900;
-    font-size: clamp(30px, 6vw, 52px);
+    font-size: clamp(30px, 5vw, 48px);
     line-height: 1.05;
-    margin: 64px 0 12px;
     text-align: center;
+    margin: 0 auto 14px;
+    max-width: 820px;
   }
-  .lead { text-align: center; color: var(--tinta-suave); margin: 0 auto 8px; max-width: 640px; }
-  h2 {
-    font-family: "Big Shoulders Display", sans-serif;
-    font-weight: 800;
-    font-size: 26px;
-    margin: 56px 0 14px;
-    text-transform: uppercase;
-    letter-spacing: .02em;
-  }
+  .intro { text-align: center; color: var(--tinta-suave); margin: 0 auto 32px; max-width: 640px; }
+  .mano { font-family: "Caveat", cursive; color: var(--acento); font-size: 1.15em; }
 
-  .grupo { margin-bottom: 26px; }
-  .grupo h3 {
-    font-size: 13px;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--acento);
-    margin: 0 0 10px;
-  }
-  .fuzz {
-    display: flex;
-    gap: 14px;
+  /* Dolor */
+  .dolor {
     background: var(--crema-claro);
     border: 1px solid var(--linea);
-    border-radius: 14px;
-    padding: 14px 16px;
-    margin-bottom: 10px;
+    border-radius: 22px;
+    padding: 36px 24px;
+    text-align: center;
   }
-  .inicial {
-    flex: 0 0 44px;
-    height: 44px;
-    border-radius: 50%;
+  .dolor .titulo { margin-bottom: 12px; }
+  .dolor p { max-width: 640px; margin: 0 auto; }
+
+  /* Equipo */
+  .filtros { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 0 0 24px; }
+  .filtros a {
+    text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: .04em;
+    padding: 7px 14px; border-radius: 999px; border: 1px solid var(--linea); background: var(--crema-claro);
+  }
+  .area { margin: 0 0 36px; scroll-margin-top: 16px; }
+  .area h3 {
+    font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--acento);
+    margin: 0 0 14px;
+  }
+  .rejilla { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .fuzz {
+    background: var(--crema-claro);
+    border: 1px solid var(--linea);
+    border-radius: 20px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .15s ease;
+  }
+  .fuzz:hover { transform: translateY(-3px); }
+  .retrato {
+    height: 150px;
+    border-radius: 16px;
+    background: #F7F1E4;
     display: grid;
     place-items: center;
-    font-family: "Big Shoulders Display", sans-serif;
-    font-weight: 900;
-    font-size: 24px;
-    color: #14161c;
+    overflow: hidden;
+    margin-bottom: 14px;
   }
-  .fuzz strong { font-size: 18px; }
-  .fuzz p { margin: 4px 0 0; }
-  .resultado { color: var(--tinta-suave); }
-
-  .beneficios { list-style: none; padding: 0; margin: 0; }
-  .beneficios li { border-top: 1px solid var(--linea); padding: 14px 0; }
-  .beneficios li strong { display: block; font-size: 18px; margin-bottom: 2px; }
-
-  .ahorro {
-    background: var(--pildora);
-    color: #F3EBDA;
-    border-radius: 18px;
-    padding: 26px 22px;
-    margin-top: 56px;
+  .retrato img { height: 140px; width: auto; mix-blend-mode: multiply; }
+  .retrato .inicial {
+    width: 96px; height: 96px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: "Big Shoulders Display", sans-serif; font-weight: 900; font-size: 52px; color: #14161c;
   }
-  .ahorro h2 { color: #F3EBDA; margin-top: 0; }
+  .fuzz .nombre { font-family: "Big Shoulders Display", sans-serif; font-weight: 900; font-size: 30px; line-height: 1; margin: 0; }
+  .fuzz .rol { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-suave); margin: 4px 0 10px; }
+  .fuzz .que { margin: 0 0 10px; }
+  .fuzz .resultado { margin: auto 0 0; padding-top: 10px; border-top: 1px dashed var(--linea); font-weight: 600; }
+
+  /* Pídeselo así */
+  .chat { display: grid; gap: 14px; max-width: 720px; margin: 0 auto; }
+  .msj { display: flex; gap: 12px; align-items: flex-end; }
+  .msj img, .msj .ini {
+    width: 52px; height: 52px; border-radius: 50%; background: #F7F1E4; object-fit: cover; object-position: top; flex: 0 0 52px;
+  }
+  .msj .ini { display: grid; place-items: center; font-family: "Big Shoulders Display", sans-serif; font-weight: 900; font-size: 26px; color: #14161c; }
+  .burbuja {
+    background: var(--burbuja);
+    border: 1px solid var(--linea);
+    border-radius: 18px 18px 18px 4px;
+    padding: 12px 16px;
+    font-weight: 600;
+  }
+  .msj.yo { flex-direction: row-reverse; }
+  .msj.yo .burbuja { background: var(--pildora); color: #F3EBDA; border-color: var(--pildora); border-radius: 18px 18px 4px 18px; }
+
+  /* Beneficios */
+  .beneficios { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); list-style: none; padding: 0; margin: 0; }
+  .beneficios li { background: var(--crema-claro); border: 1px solid var(--linea); border-radius: 18px; padding: 18px; }
+  .beneficios li strong { display: block; font-size: 19px; margin-bottom: 6px; }
+
+  /* Ahorro */
+  .ahorro { background: var(--pildora); color: #F3EBDA; border-radius: 22px; padding: 36px 26px; }
+  .ahorro .titulo { color: #F3EBDA; text-align: left; margin-left: 0; }
   .ahorro ul { padding-left: 20px; }
   .ahorro li { margin-bottom: 10px; }
-  .ahorro .cierre {
-    font-family: "Caveat", cursive;
-    font-size: 30px;
-    color: #E7A7B0;
-    margin: 14px 0 0;
-  }
+  .ahorro .cierre { font-family: "Caveat", cursive; font-size: 34px; color: #E7A7B0; margin: 16px 0 0; }
 
-  .cta-final { text-align: center; margin: 56px 0 0; }
-  .cta-final p { font-size: 20px; font-weight: 700; margin: 0 0 16px; }
+  /* Preguntas */
+  .faq { max-width: 760px; margin: 0 auto; }
+  .faq details { border-top: 1px solid var(--linea); padding: 16px 0; }
+  .faq details:last-child { border-bottom: 1px solid var(--linea); }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 18px; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  .faq summary::after { content: "+"; font-weight: 900; color: var(--acento); }
+  .faq details[open] summary::after { content: "–"; }
+  .faq p { margin: 10px 0 0; color: var(--tinta-suave); }
 
-  footer {
-    text-align: center;
-    color: var(--tinta-suave);
-    font-size: 14px;
-    padding: 48px 0 56px;
-  }
+  /* Cierre */
+  .final { text-align: center; }
+  .final .fila { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; margin: 0 0 18px; }
+  .final .fila img { height: 64px; width: auto; mix-blend-mode: multiply; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .final .fila { background: #F7F1E4; border-radius: 16px; padding: 8px; } }
+  :root[data-theme="dark"] .final .fila { background: #F7F1E4; border-radius: 16px; padding: 8px; }
+
+  footer { text-align: center; color: var(--tinta-suave); font-size: 14px; padding: 56px 0 56px; }
   @media (max-width: 480px) {
     body { font-size: 16px; }
     .letrero { padding: 14px 18px 12px; }
+    section { padding-top: 56px; }
   }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <section class="hero">
-    <div class="letrero" aria-label="The Fuzz-AI Lab"><span class="t1">The</span> <span class="t2">F</span><span class="t3">u</span><span class="t4">z</span><span class="t5">z</span><span class="t6">-</span><span class="t7">A</span><span class="t1">I</span> <span class="t8">L</span><span class="t9">a</span><span class="t10">b</span></div>
-    <p class="lema">Marketing como servicio con agentes de IA</p>
-    <p class="sub">Cada tarea tiene un dueño</p>
-    <div class="foto"><img src="lab-portada.png" alt="Los 15 Fuzzies, el equipo de The Fuzz-AI Lab, cada uno con su herramienta"></div>
+  <header class="barra">
+    <a class="marca-mini" href="#inicio">The Fuzz-AI Lab</a>
+    <nav>
+      <a class="ocultar" href="#equipo">El equipo</a>
+      <a class="ocultar" href="#preguntas">Preguntas</a>
+      <a class="btn btn-primario btn-chico" href="https://www.instagram.com/thefuzzailab/" target="_blank" rel="noopener">Escríbenos</a>
+    </nav>
+  </header>
+
+  <div class="hero" id="inicio">
+    <div class="letrero" aria-label="The Fuzz-AI Lab"><span style="color:#ffb21f">T</span><span style="color:#ff7a2e">h</span><span style="color:#9b5cf0">e</span> <span style="color:#c8cbe0">F</span><span style="color:#ff8fbf">u</span><span style="color:#35d0bd">z</span><span style="color:#3a6dff">z</span><span style="color:#ff3d3d">-</span><span style="color:#e6cfa8">A</span><span style="color:#ffa64d">I</span> <span style="color:#ffd23a">L</span><span style="color:#9ee04a">a</span><span style="color:#4a9bea">b</span></div>
+    <h1>Un equipo de Fuzzies. Cada uno resuelve un problema de tu negocio.</h1>
+    <p class="bajada">Marketing como servicio con agentes de IA.</p>
     <div class="botones">
       <a class="btn btn-primario" href="#equipo">Conoce a tu equipo</a>
       <a class="btn btn-secundario" href="https://www.instagram.com/thefuzzailab/" target="_blank" rel="noopener">Escríbenos en Instagram</a>
     </div>
+    <p class="sello">Cada tarea tiene un dueño</p>
+    <div class="foto"><img src="lab-portada.png" alt="Los Fuzzies de The Fuzz-AI Lab, cada uno con su herramienta" width="1640" height="624"></div>
+  </div>
+
+  <section>
+    <div class="dolor">
+      <h2 class="titulo">¿Te cansaste de cargar todo el negocio en la cabeza?</h2>
+      <p>Hacerlo por separado cuesta más de lo que parece: reuniones con cada proveedor, preguntas de «¿ya salió?», correcciones y cifras que nadie junta.</p>
+    </div>
   </section>
 
-  <h1>Un equipo de 15 Fuzzies.<br>Cada uno resuelve un problema de tu negocio.</h1>
+  <section id="equipo">
+    <h2 class="titulo">Encuentra al Fuzz para cada problema</h2>
+    <p class="intro">Investigación, estrategia, contenido, distribución y medición. <span class="mano">Cada uno sabe lo suyo.</span></p>
+    <nav class="filtros" aria-label="Áreas del equipo">
+      <a href="#investigacion">Investigación</a>
+      <a href="#estrategia">Estrategia</a>
+      <a href="#contenido">Contenido</a>
+      <a href="#distribucion">Distribución</a>
+      <a href="#medicion">Medición y mejora</a>
+    </nav>
 
-  <h2 id="equipo">Quiénes son</h2>
+    <div class="area" id="investigacion">
+      <h3>Investigación</h3>
+      <div class="rejilla">
+        <article class="fuzz"><div class="retrato"><img src="equipo/chispa.webp" alt="Chispa" loading="lazy"></div><p class="nombre">Chispa</p><p class="rol">Noticias del nicho</p><p class="que">Detecta las noticias de tu nicho que la gente está comentando, para que siempre tengas de qué hablar.</p><p class="resultado">Contenido con tema y momento.</p></article>
+        <article class="fuzz"><div class="retrato"><img src="equipo/travieso.webp" alt="Travieso" loading="lazy"></div><p class="nombre">Travieso</p><p class="rol">Tu cliente y tu sector</p><p class="que">Encuentra qué están vendiendo otros negocios de tu sector y qué le duele a tu cliente con sus palabras.</p><p class="resultado">Sabes qué decir antes de publicar.</p></article>
+      </div>
+    </div>
 
-  <div class="grupo">
-    <h3>Investigación</h3>
-    <div class="fuzz"><span class="inicial" style="background:#FF9A3C">C</span><div><strong>Chispa</strong><p>Detecta las noticias de tu nicho que la gente está comentando, para que siempre tengas de qué hablar.</p><p class="resultado">Resultado: contenido con tema y momento.</p></div></div>
-    <div class="fuzz"><span class="inicial" style="background:#B8BFE0">T</span><div><strong>Travieso</strong><p>Encuentra qué están vendiendo otros negocios de tu sector y qué le duele a tu cliente con sus palabras.</p><p class="resultado">Resultado: sabes qué decir antes de publicar.</p></div></div>
-  </div>
+    <div class="area" id="estrategia">
+      <h3>Estrategia</h3>
+      <div class="rejilla">
+        <article class="fuzz"><div class="retrato"><img src="equipo/nube.webp" alt="Nube" loading="lazy"></div><p class="nombre">Nube</p><p class="rol">Plan del mes</p><p class="que">Convierte tus objetivos en un plan del mes: qué se publica, cuánto y cuándo.</p><p class="resultado">Dejas de improvisar.</p></article>
+        <article class="fuzz"><div class="retrato"><span class="inicial" style="background:#ffd23a">P</span></div><p class="nombre">Productor</p><p class="rol">Producción de reels</p><p class="que">Ordena la producción de reels para que no se atrasen ni se pisen.</p><p class="resultado">Entregas a tiempo sin correr el último día.</p></article>
+      </div>
+    </div>
 
-  <div class="grupo">
-    <h3>Estrategia</h3>
-    <div class="fuzz"><span class="inicial" style="background:#3DD6C0">N</span><div><strong>Nube</strong><p>Convierte tus objetivos en un plan del mes: qué se publica, cuánto y cuándo.</p><p class="resultado">Resultado: dejas de improvisar.</p></div></div>
-    <div class="fuzz"><span class="inicial" style="background:#FFD23F">P</span><div><strong>Productor</strong><p>Ordena la producción de reels para que no se atrasen ni se pisen.</p><p class="resultado">Resultado: entregas a tiempo sin correr el último día.</p></div></div>
-  </div>
+    <div class="area" id="contenido">
+      <h3>Contenido</h3>
+      <div class="rejilla">
+        <article class="fuzz"><div class="retrato"><img src="equipo/chula.webp" alt="Chula" loading="lazy"></div><p class="nombre">Chula</p><p class="rol">Textos y guiones</p><p class="que">Escribe textos para redes, guiones y correos con el tono de tu marca.</p><p class="resultado">Publicas sin quedarte en blanco.</p></article>
+        <article class="fuzz"><div class="retrato"><img src="equipo/pixel.webp" alt="Pixel" loading="lazy"></div><p class="nombre">Pixel</p><p class="rol">Diseño</p><p class="que">Diseña carruseles, portadas e imágenes con tu identidad.</p><p class="resultado">Tu marca se ve igual en todo.</p></article>
+        <article class="fuzz"><div class="retrato"><img src="equipo/rayo.webp" alt="Rayo" loading="lazy"></div><p class="nombre">Rayo</p><p class="rol">Edición de reels</p><p class="que">Edita tus reels, con cortes, subtítulos y versiones cortas.</p><p class="resultado">Videos listos sin pasar horas en el editor.</p></article>
+        <article class="fuzz"><div class="retrato"><span class="inicial" style="background:#4a9bea">E</span></div><p class="nombre">Escenas</p><p class="rol">Guion visual</p><p class="que">Arma el guion visual de cada reel con tus personajes y escenas.</p><p class="resultado">Videos coherentes con tu marca, sin improvisar.</p></article>
+        <article class="fuzz"><div class="retrato"><img src="equipo/zen.webp" alt="Zén" loading="lazy"></div><p class="nombre">Zén</p><p class="rol">Guardiana de tu marca</p><p class="que">Revisa que cada pieza suene y se vea como tú.</p><p class="resultado">Te llega revisado, con tu voz y tu identidad.</p></article>
+      </div>
+    </div>
 
-  <div class="grupo">
-    <h3>Contenido</h3>
-    <div class="fuzz"><span class="inicial" style="background:#FF6FA8">C</span><div><strong>Chula</strong><p>Escribe textos para redes, guiones y correos con el tono de tu marca.</p><p class="resultado">Resultado: publicas sin quedarte en blanco.</p></div></div>
-    <div class="fuzz"><span class="inicial" style="background:#4A7CFF">P</span><div><strong>Pixel</strong><p>Diseña carruseles, portadas e imágenes con tu identidad.</p><p class="resultado">Resultado: tu marca se ve igual en todo.</p></div></div>
-    <div class="fuzz"><span class="inicial" style="background:#8BD94A">R</span><div><strong>Rayo</strong><p>Edita tus reels, con cortes, subtítulos y versiones cortas.</p><p class="resultado">Resultado: videos listos sin pasar horas en el editor.</p></div></div>
-    <div class="fuzz"><span class="inicial" style="background:#59B3E6">E</span><div><strong>Escenas</strong><p>Arma el guion visual de cada reel con tus personajes y escenas.</p><p class="resultado">Resultado: videos coherentes con tu marca, sin improvisar.</p></div></div>
-    <div class="fuzz"><span class="inicial" style="background:#FF4B4B">Z</span><div><strong>Zén</strong><p>Revisa que cada pieza suene y se vea como tú.</p><p class="resultado">Resultado: te llega revisado, con tu voz y tu identidad.</p></div></div>
-  </div>
+    <div class="area" id="distribucion">
+      <h3>Distribución</h3>
+      <div class="rejilla">
+        <article class="fuzz"><div class="retrato"><img src="equipo/soli.webp" alt="Soli" loading="lazy"></div><p class="nombre">Soli</p><p class="rol">Calendario y comentarios</p><p class="que">Mantiene tu calendario publicado y deja borradores de respuesta para tus comentarios.</p><p class="resultado">Tu cuenta se mantiene activa sin estar conectado todo el día.</p></article>
+        <article class="fuzz"><div class="retrato"><img src="equipo/picaro.webp" alt="Pícaro" loading="lazy"></div><p class="nombre">Pícaro</p><p class="rol">Anuncios de Meta</p><p class="que">Revisa tus anuncios de Meta, dice qué funciona y propone cambios.</p><p class="resultado">Cada peso de pauta se mueve hacia lo que mejor responde; nada se cambia sin tu aprobación.</p></article>
+        <article class="fuzz"><div class="retrato"><img src="equipo/cosmos.webp" alt="Cosmos" loading="lazy"></div><p class="nombre">Cosmos</p><p class="rol">Correos</p><p class="que">Prepara tus correos de bienvenida, cartas y avisos.</p><p class="resultado">Tu lista recibe mensajes a tiempo y con tu voz.</p></article>
+        <article class="fuzz"><div class="retrato"><img src="equipo/lulo.webp" alt="Lulo" loading="lazy"></div><p class="nombre">Lulo</p><p class="rol">Avisos al celular</p><p class="que">Lleva las decisiones importantes a tu celular.</p><p class="resultado">No te pierdes lo urgente aunque estés lejos de la pantalla.</p></article>
+      </div>
+    </div>
 
-  <div class="grupo">
-    <h3>Distribución</h3>
-    <div class="fuzz"><span class="inicial" style="background:#FF9A3C">S</span><div><strong>Soli</strong><p>Mantiene tu calendario publicado y deja borradores de respuesta para tus comentarios.</p><p class="resultado">Resultado: tu cuenta se mantiene activa sin estar conectado todo el día.</p></div></div>
-    <div class="fuzz"><span class="inicial" style="background:#8E5CF0">P</span><div><strong>Pícaro</strong><p>Revisa tus anuncios de Meta, dice qué funciona y propone cambios.</p><p class="resultado">Resultado: cada peso de pauta se mueve hacia lo que mejor responde; nada se cambia sin tu aprobación.</p></div></div>
-    <div class="fuzz"><span class="inicial" style="background:#FF6FA8">C</span><div><strong>Cosmos</strong><p>Prepara tus correos de bienvenida, cartas y avisos.</p><p class="resultado">Resultado: tu lista recibe mensajes a tiempo y con tu voz.</p></div></div>
-    <div class="fuzz"><span class="inicial" style="background:#3DD6C0">L</span><div><strong>Lulo</strong><p>Lleva las decisiones importantes a tu celular.</p><p class="resultado">Resultado: no te pierdes lo urgente aunque estés lejos de la pantalla.</p></div></div>
-  </div>
+    <div class="area" id="medicion">
+      <h3>Medición y mejora</h3>
+      <div class="rejilla">
+        <article class="fuzz"><div class="retrato"><img src="equipo/mimo.webp" alt="Mimo" loading="lazy"></div><p class="nombre">Mimo</p><p class="rol">Resultados de la semana</p><p class="que">Cada lunes te dice qué contenido y qué anuncios funcionaron, con las cifras de Meta.</p><p class="resultado">Sabes qué repetir y qué dejar.</p></article>
+        <article class="fuzz"><div class="retrato"><img src="equipo/nexo.webp" alt="Nexo" loading="lazy"></div><p class="nombre">Nexo</p><p class="rol">Páginas y landings</p><p class="que">Arma las páginas y landings que recogen a tus clientes.</p><p class="resultado">Una página lista para captar, sin depender de un programador.</p></article>
+      </div>
+    </div>
+  </section>
 
-  <div class="grupo">
-    <h3>Medición y mejora</h3>
-    <div class="fuzz"><span class="inicial" style="background:#B8BFE0">M</span><div><strong>Mimo</strong><p>Cada lunes te dice qué contenido y qué anuncios funcionaron, con las cifras de Meta.</p><p class="resultado">Resultado: sabes qué repetir y qué dejar.</p></div></div>
-    <div class="fuzz"><span class="inicial" style="background:#FFD23F">N</span><div><strong>Nexo</strong><p>Arma las páginas y landings que recogen a tus clientes.</p><p class="resultado">Resultado: una página lista para captar, sin depender de un programador.</p></div></div>
-  </div>
+  <section>
+    <h2 class="titulo">Pídeselo como se lo pedirías a tu equipo</h2>
+    <p class="intro">Tú dices qué necesitas. <span class="mano">El Fuzz que sabe de eso responde.</span></p>
+    <div class="chat">
+      <div class="msj yo"><div class="burbuja">Soli, ¿mi calendario de esta semana ya está publicado?</div></div>
+      <div class="msj"><img src="equipo/soli.webp" alt="Soli"><div class="burbuja">Sí, y te dejé borradores de respuesta para los comentarios.</div></div>
+      <div class="msj yo"><div class="burbuja">Mimo, ¿qué funcionó la semana pasada?</div></div>
+      <div class="msj"><img src="equipo/mimo.webp" alt="Mimo"><div class="burbuja">Ya te lo dejé: qué repetir y qué dejar, con sus cifras.</div></div>
+      <div class="msj yo"><div class="burbuja">Pícaro, ¿muevo la pauta?</div></div>
+      <div class="msj"><img src="equipo/picaro.webp" alt="Pícaro"><div class="burbuja">Te propongo el cambio con su razón. Nada se mueve sin tu sí.</div></div>
+    </div>
+  </section>
 
-  <h2>Lo que cambia para tu negocio</h2>
-  <ul class="beneficios">
-    <li><strong>Un solo equipo responde por todo.</strong>Ya no tienes que coordinar a un diseñador, un editor, un community y un analista. Hablas con un solo equipo y un solo responsable.</li>
-    <li><strong>Tu marca suena igual en todo.</strong>Los textos, los diseños, los videos y los correos salen con la misma voz. Eso es lo que la gente recuerda.</li>
-    <li><strong>Tu tiempo vuelve a ti.</strong>Dejas de escribir, diseñar, editar y revisar cada cifra tú solo. Lo que te toca es decidir.</li>
-    <li><strong>Lo que no funciona se ve pronto.</strong>Cada semana sabes qué contenido y qué anuncios trajeron atención, y qué dejar de hacer.</li>
-    <li><strong>Tu inversión en publicidad se mueve hacia lo que funciona.</strong>Nada se cambia sin tu aprobación, y los cambios salen con su razón.</li>
-    <li><strong>Crecer no te obliga a contratar.</strong>Si tu negocio sube, el equipo sigue trabajando con la misma estructura, sin tener que buscar y entrenar a más personas.</li>
-    <li><strong>Nada depende de una sola persona.</strong>Si alguien se enferma o se va, el trabajo sigue. No pierdes semanas ni conocimiento.</li>
-    <li><strong>Tu cuenta nunca queda sola.</strong>La publicación, los comentarios y los correos tienen una rutina diaria, no un "cuando alguien tenga tiempo".</li>
-    <li><strong>Tú decides, ellos ejecutan.</strong>Cada propuesta llega con su razón, y tú das el sí antes de que algo salga.</li>
-  </ul>
-
-  <section class="ahorro">
-    <h2>Lo que ya gastas en tiempo y en dinero, repartido en cinco lugares. Aquí lo recuperas.</h2>
-    <p>Hacerlo por separado cuesta más de lo que parece: reuniones con cada proveedor, preguntas de "¿ya salió?", correcciones y cifras que nadie junta. Si decides trabajar con un solo equipo, te quedas con:</p>
-    <ul>
-      <li><strong>Menos reuniones y menos mensajes.</strong> Cero "¿ya está?".</li>
-      <li><strong>Un solo lugar para revisar.</strong> Sabes qué funcionó, qué dejar y qué subir, sin esperar a que alguien te lo cuente.</li>
-      <li><strong>Un solo responsable.</strong> Hablas con un equipo, no con cuatro proveedores distintos.</li>
+  <section>
+    <h2 class="titulo">Lo que cambia para tu negocio</h2>
+    <p class="intro">Cuando todo el equipo trabaja para ti.</p>
+    <ul class="beneficios">
+      <li><strong>Un solo equipo responde por todo.</strong>Ya no tienes que coordinar a un diseñador, un editor, un community y un analista. Hablas con un solo equipo y un solo responsable.</li>
+      <li><strong>Tu marca suena igual en todo.</strong>Los textos, los diseños, los videos y los correos salen con la misma voz. Eso es lo que la gente recuerda.</li>
+      <li><strong>Tu tiempo vuelve a ti.</strong>Dejas de escribir, diseñar, editar y revisar cada cifra tú solo. Lo que te toca es decidir.</li>
+      <li><strong>Lo que no funciona se ve pronto.</strong>Cada semana sabes qué contenido y qué anuncios trajeron atención, y qué dejar de hacer.</li>
+      <li><strong>Tu inversión en publicidad se mueve hacia lo que funciona.</strong>Nada se cambia sin tu aprobación, y los cambios salen con su razón.</li>
+      <li><strong>El equipo crece contigo.</strong>Si tu negocio sube, cada problema nuevo tiene un Fuzz que se encarga.</li>
+      <li><strong>Nada depende de una sola persona.</strong>Si alguien se enferma o se va, el trabajo sigue. No pierdes semanas ni conocimiento.</li>
+      <li><strong>Tu cuenta nunca queda sola.</strong>La publicación, los comentarios y los correos tienen una rutina diaria, no un "cuando alguien tenga tiempo".</li>
+      <li><strong>Tú decides, ellos ejecutan.</strong>Cada propuesta llega con su razón, y tú das el sí antes de que algo salga.</li>
     </ul>
-    <p class="cierre">Gana quien decide con un solo equipo.</p>
   </section>
 
-  <div class="cta-final">
-    <p>¿Quieres que tu negocio tenga su propio equipo?</p>
+  <section>
+    <div class="ahorro">
+      <h2 class="titulo">Lo que ya gastas en tiempo y en dinero, repartido en cinco lugares. Aquí lo recuperas.</h2>
+      <p>Si decides trabajar con un solo equipo, te quedas con:</p>
+      <ul>
+        <li><strong>Menos reuniones y menos mensajes.</strong> Cero "¿ya está?".</li>
+        <li><strong>Un solo lugar para revisar.</strong> Sabes qué funcionó, qué dejar y qué subir, sin esperar a que alguien te lo cuente.</li>
+        <li><strong>Un solo responsable.</strong> Hablas con un equipo, no con cuatro proveedores distintos.</li>
+      </ul>
+      <p class="cierre">Gana quien decide con un solo equipo.</p>
+    </div>
+  </section>
+
+  <section id="preguntas">
+    <h2 class="titulo">Preguntas</h2>
+    <div class="faq">
+      <details><summary>¿Qué es un Fuzz?</summary><p>Un agente de IA del equipo de The Fuzz-AI Lab. Cada uno resuelve un problema concreto de tu negocio: cada tarea tiene un dueño.</p></details>
+      <details><summary>¿Sale algo sin que yo lo apruebe?</summary><p>No. Cada propuesta llega con su razón, y tú das el sí antes de que algo salga.</p></details>
+      <details><summary>¿Tengo que coordinar a cada Fuzz?</summary><p>No. Hablas con un solo equipo y un solo responsable.</p></details>
+      <details><summary>¿Qué pasa si mi negocio crece?</summary><p>El equipo crece contigo: cada problema nuevo tiene un Fuzz que se encarga.</p></details>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="fila" aria-hidden="true">
+      <img src="equipo/chispa.webp" alt=""><img src="equipo/travieso.webp" alt=""><img src="equipo/nube.webp" alt=""><img src="equipo/chula.webp" alt=""><img src="equipo/pixel.webp" alt=""><img src="equipo/rayo.webp" alt=""><img src="equipo/zen.webp" alt=""><img src="equipo/soli.webp" alt=""><img src="equipo/picaro.webp" alt=""><img src="equipo/cosmos.webp" alt=""><img src="equipo/lulo.webp" alt=""><img src="equipo/mimo.webp" alt=""><img src="equipo/nexo.webp" alt="">
+    </div>
+    <h2 class="titulo">¿Quieres que tu negocio tenga su propio equipo?</h2>
     <div class="botones">
       <a class="btn btn-primario" href="https://www.instagram.com/thefuzzailab/" target="_blank" rel="noopener">Escríbenos en Instagram</a>
     </div>
-  </div>
+  </section>
 
   <footer>The Fuzz-AI Lab · estratega.site/lab · <a href="https://estratega.site/lab/agentes/">Datos para agentes</a></footer>
 </div>
