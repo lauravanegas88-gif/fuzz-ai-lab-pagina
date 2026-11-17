@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fuzz-AI Lab · Solicitud</title>
+<meta name="description" content="Cuéntanos de tu negocio y te decimos si el equipo de Fuzzies puede ayudarte.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://estratega.site/lab/solicitud/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=Figtree:wght@400;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root { --crema:#E8DCC4; --crema-claro:#F3EBDA; --pildora:#14161c; --tinta:#2A1F1A; --tinta-suave:#5A4A41; --linea:#CDBE9F; --acento:#6E1E2A; --campo:#FFFDF8; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --crema:#2A221D; --crema-claro:#342A23; --pildora:#0d0f13; --tinta:#F3EBDA; --tinta-suave:#CDBE9F; --linea:#4A3D34; --acento:#E7A7B0; --campo:#3E332B; } }
+  :root[data-theme="dark"] { --crema:#2A221D; --crema-claro:#342A23; --pildora:#0d0f13; --tinta:#F3EBDA; --tinta-suave:#CDBE9F; --linea:#4A3D34; --acento:#E7A7B0; --campo:#3E332B; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--crema); color:var(--tinta); font-family:"Figtree",system-ui,sans-serif; font-size:17px; line-height:1.5; }
+  .wrap { max-width:680px; margin:0 auto; padding:16px 16px 64px; }
+  .volver { font-weight:600; text-decoration:none; color:inherit; font-size:15px; }
+  .letrero { display:inline-block; background:var(--pildora); border-radius:24px; padding:10px 22px 8px; font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:34px; line-height:1; margin:24px 0 8px; }
+  h1 { font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:clamp(32px,7vw,48px); line-height:1.05; margin:12px 0 8px; }
+  .bajada { color:var(--tinta-suave); margin:0 0 28px; }
+  .mano { font-family:"Caveat",cursive; color:var(--acento); font-size:1.2em; }
+  form { display:grid; gap:22px; }
+  label, legend { font-weight:700; display:block; margin-bottom:8px; }
+  .opc { font-weight:400; color:var(--tinta-suave); font-size:14px; }
+  input[type=text], input[type=email], input[type=tel], textarea {
+    width:100%; font:inherit; color:var(--tinta); background:var(--campo); border:1px solid var(--linea); border-radius:12px; padding:12px 14px;
+  }
+  textarea { min-height:96px; resize:vertical; }
+  input:focus, textarea:focus { outline:2px solid var(--acento); outline-offset:1px; }
+  fieldset { border:0; padding:0; margin:0; }
+  .opciones { display:flex; flex-wrap:wrap; gap:8px; }
+  .opciones label { font-weight:600; margin:0; }
+  .opciones input { position:absolute; opacity:0; pointer-events:none; }
+  .opciones span { display:inline-block; padding:9px 14px; border-radius:999px; border:1px solid var(--linea); background:var(--crema-claro); cursor:pointer; }
+  .opciones input:checked + span { background:var(--pildora); color:#F3EBDA; border-color:var(--pildora); }
+  .opciones input:focus-visible + span { outline:2px solid var(--acento); outline-offset:2px; }
+  .permiso { display:flex; gap:10px; align-items:flex-start; font-weight:400; font-size:15px; }
+  .permiso input { margin-top:4px; width:18px; height:18px; flex:0 0 18px; }
+  button { font:inherit; font-weight:700; padding:15px 28px; border-radius:999px; border:0; background:var(--pildora); color:#F3EBDA; cursor:pointer; justify-self:start; }
+  button[disabled] { opacity:.6; cursor:wait; }
+  .error { color:#B3261E; font-weight:600; min-height:1em; margin:0; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .error { color:#FF8A80; } }
+  .gracias { display:none; background:var(--crema-claro); border:1px solid var(--linea); border-radius:20px; padding:28px 22px; }
+  .gracias h2 { font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:36px; margin:0 0 8px; }
+  .trampa { position:absolute; left:-9999px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="volver" href="../">← Volver al Lab</a>
+  <div class="letrero" aria-label="The Fuzz-AI Lab"><span style="color:#ffb21f">T</span><span style="color:#ff7a2e">h</span><span style="color:#9b5cf0">e</span> <span style="color:#c8cbe0">F</span><span style="color:#ff8fbf">u</span><span style="color:#35d0bd">z</span><span style="color:#3a6dff">z</span><span style="color:#ff3d3d">-</span><span style="color:#e6cfa8">A</span><span style="color:#ffa64d">I</span> <span style="color:#ffd23a">L</span><span style="color:#9ee04a">a</span><span style="color:#4a9bea">b</span></div>
+  <h1>Cuéntanos de tu negocio</h1>
+  <p class="bajada">Son dos minutos. Con esto sabemos si el equipo puede ayudarte. <span class="mano">Sin compromiso.</span></p>
+
+  <form id="solicitud" novalidate>
+    <div><label for="nombre">Tu nombre</label><input id="nombre" name="nombre" type="text" autocomplete="name" required maxlength="120"></div>
+    <div><label for="correo">Tu correo</label><input id="correo" name="correo" type="email" autocomplete="email" required maxlength="200"></div>
+    <div><label for="whatsapp">WhatsApp <span class="opc">(opcional)</span></label><input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" maxlength="40"></div>
+    <div><label for="negocio">Tu negocio: nombre y web o Instagram</label><input id="negocio" name="negocio" type="text" required maxlength="300" placeholder="Ej.: Panadería La Esquina · @laesquina"></div>
+    <div><label for="tipo_negocio">¿A qué se dedica? <span class="opc">(opcional)</span></label><input id="tipo_negocio" name="tipo_negocio" type="text" maxlength="120"></div>
+
+    <fieldset><legend>¿Cuántas personas trabajan contigo?</legend>
+      <div class="opciones">
+        <label><input type="radio" name="tamano_equipo" value="solo yo" required><span>Solo yo</span></label>
+        <label><input type="radio" name="tamano_equipo" value="2 a 10"><span>2 a 10</span></label>
+        <label><input type="radio" name="tamano_equipo" value="más de 10"><span>Más de 10</span></label>
+      </div></fieldset>
+
+    <fieldset><legend>¿Cuántos clientes atiendes hoy, más o menos al mes?</legend>
+      <div class="opciones">
+        <label><input type="radio" name="clientes_actuales" value="menos de 20" required><span>Menos de 20</span></label>
+        <label><input type="radio" name="clientes_actuales" value="20 a 100"><span>20 a 100</span></label>
+        <label><input type="radio" name="clientes_actuales" value="100 a 500"><span>100 a 500</span></label>
+        <label><input type="radio" name="clientes_actuales" value="más de 500"><span>Más de 500</span></label>
+      </div></fieldset>
+
+    <fieldset><legend>¿Cuánto inviertes al mes en publicidad?</legend>
+      <div class="opciones">
+        <label><input type="radio" name="inversion_publicidad" value="nada todavía" required><span>Nada todavía</span></label>
+        <label><input type="radio" name="inversion_publicidad" value="menos de USD 300"><span>Menos de USD 300</span></label>
+        <label><input type="radio" name="inversion_publicidad" value="USD 300 a 1.000"><span>USD 300 a 1.000</span></label>
+        <label><input type="radio" name="inversion_publicidad" value="USD 1.000 a 3.000"><span>USD 1.000 a 3.000</span></label>
+        <label><input type="radio" name="inversion_publicidad" value="más de USD 3.000"><span>Más de USD 3.000</span></label>
+      </div></fieldset>
+
+    <fieldset><legend>¿Quién hace hoy tu marketing?</legend>
+      <div class="opciones">
+        <label><input type="radio" name="quien_hace_marketing" value="yo" required><span>Yo</span></label>
+        <label><input type="radio" name="quien_hace_marketing" value="alguien de mi equipo"><span>Alguien de mi equipo</span></label>
+        <label><input type="radio" name="quien_hace_marketing" value="agencia o freelancers"><span>Una agencia o freelancers</span></label>
+        <label><input type="radio" name="quien_hace_marketing" value="nadie"><span>Nadie</span></label>
+      </div></fieldset>
+
+    <div><label for="objetivo">¿Qué quieres lograr en los próximos 3 a 6 meses?</label><textarea id="objetivo" name="objetivo" required maxlength="1000"></textarea></div>
+
+    <fieldset><legend>¿Para cuándo quieres empezar?</legend>
+      <div class="opciones">
+        <label><input type="radio" name="cuando_empezar" value="este mes" required><span>Este mes</span></label>
+        <label><input type="radio" name="cuando_empezar" value="en 1 a 3 meses"><span>En 1 a 3 meses</span></label>
+        <label><input type="radio" name="cuando_empezar" value="solo estoy mirando"><span>Solo estoy mirando</span></label>
+      </div></fieldset>
+
+    <fieldset><legend>¿Cómo nos conociste? <span class="opc">(opcional)</span></legend>
+      <div class="opciones">
+        <label><input type="radio" name="como_nos_conocio" value="instagram"><span>Instagram</span></label>
+        <label><input type="radio" name="como_nos_conocio" value="linkedin"><span>LinkedIn</span></label>
+        <label><input type="radio" name="como_nos_conocio" value="recomendación"><span>Me lo recomendaron</span></label>
+        <label><input type="radio" name="como_nos_conocio" value="google o una IA"><span>Google o una IA</span></label>
+        <label><input type="radio" name="como_nos_conocio" value="otro"><span>Otro</span></label>
+      </div></fieldset>
+
+    <label class="trampa" aria-hidden="true">No llenar<input type="text" name="sitio" tabindex="-1" autocomplete="off"></label>
+
+    <label class="permiso"><input type="checkbox" id="consentimiento" required><span id="texto-permiso">Acepto que The Fuzz-AI Lab use estos datos para responder mi solicitud, según la <a href="https://estratega.site/privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</span></label>
+
+    <p class="error" id="error" role="alert"></p>
+    <button type="submit" id="enviar">Enviar solicitud</button>
+  </form>
+
+  <div class="gracias" id="gracias" tabindex="-1">
+    <h2>¡Gracias!</h2>
+    <p>Recibimos tu solicitud. El equipo la revisa y te escribe para contarte si podemos ayudarte.</p>
+    <p><a href="../">Volver al Lab</a></p>
+  </div>
+</div>
+<script>
+(function () {
+  var URL = "https://fgyjcgnnplzlmzcuejpf.supabase.co/rest/v1/lab_solicitudes";
+  var KEY = "sb_publishable_cGa7fwV4G9GPKXcS2AGNGQ_g3e1pjK0";
+  var form = document.getElementById("solicitud");
+  var err = document.getElementById("error");
+  var btn = document.getElementById("enviar");
+  function val(n) { var el = form.elements[n]; return el ? (el.value || "").trim() : ""; }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    err.textContent = "";
+    if (val("sitio")) return;
+    var faltan = [];
+    if (val("nombre").length < 2) faltan.push("tu nombre");
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val("correo"))) faltan.push("un correo válido");
+    if (val("negocio").length < 2) faltan.push("tu negocio");
+    if (!val("tamano_equipo")) faltan.push("cuántas personas trabajan contigo");
+    if (!val("clientes_actuales")) faltan.push("cuántos clientes atiendes");
+    if (!val("inversion_publicidad")) faltan.push("cuánto inviertes en publicidad");
+    if (!val("quien_hace_marketing")) faltan.push("quién hace tu marketing");
+    if (!val("objetivo")) faltan.push("qué quieres lograr");
+    if (!val("cuando_empezar")) faltan.push("para cuándo quieres empezar");
+    if (!document.getElementById("consentimiento").checked) faltan.push("aceptar el uso de tus datos");
+    if (faltan.length) { err.textContent = "Falta: " + faltan.join(", ") + "."; return; }
+    var datos = {
+      nombre: val("nombre"), correo: val("correo"), whatsapp: val("whatsapp") || null,
+      negocio: val("negocio"), tipo_negocio: val("tipo_negocio") || null, tamano_equipo: val("tamano_equipo"),
+      clientes_actuales: val("clientes_actuales"), inversion_publicidad: val("inversion_publicidad"),
+      quien_hace_marketing: val("quien_hace_marketing"), objetivo: val("objetivo"),
+      cuando_empezar: val("cuando_empezar"), como_nos_conocio: val("como_nos_conocio") || null,
+      consentimiento: true, consentimiento_texto: document.getElementById("texto-permiso").textContent.trim()
+    };
+    btn.disabled = true; btn.textContent = "Enviando…";
+    fetch(URL, { method: "POST", headers: { "apikey": KEY, "Authorization": "Bearer " + KEY, "Content-Type": "application/json", "Prefer": "return=minimal" }, body: JSON.stringify(datos) })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        form.style.display = "none";
+        var g = document.getElementById("gracias"); g.style.display = "block"; g.focus();
+      })
+      .catch(function () {
+        err.textContent = "No se pudo enviar. Intenta de nuevo en un momento o escríbenos en Instagram: @thefuzzailab.";
+        btn.disabled = false; btn.textContent = "Enviar solicitud";
+      });
+  });
+})();
+</script>
+</body>
+</html>
