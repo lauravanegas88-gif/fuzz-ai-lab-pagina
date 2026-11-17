@@ -318,6 +318,11 @@
   .versus .ok { color:#9ee04a; font-weight:900; }
 
   /* Trabajo real y ahora */
+  .videos { display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .videos figure { margin:0; background:var(--crema-claro); border:1px solid var(--linea); border-radius:18px; padding:10px; }
+  .videos video { width:100%; aspect-ratio:9/16; height:auto; display:block; border-radius:12px; background:var(--linea); object-fit:cover; }
+  .videos .tipo { font-size:16px; font-weight:800; margin:10px 4px 2px; }
+  .videos .para { font-size:14px; margin:0 4px 4px; opacity:.85; }
   .trabajo { display:grid; gap:16px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
   .trabajo figure { margin:0; background:var(--crema-claro); border:1px solid var(--linea); border-radius:18px; padding:10px; }
   .trabajo img { width:100%; height:auto; display:block; border-radius:12px; }
@@ -434,6 +439,17 @@
     </div>
   </section>
 
+  <section id="videos">
+    <h2 class="titulo">Los videos que hace Rayo</h2>
+    <p class="intro">Cuatro tipos de reel, todos con la marca del negocio. Estos son de la marca de Laura, la fundadora del Lab. <span class="mano">Los tuyos llevan tu marca.</span></p>
+    <div class="videos">
+      <figure><video muted loop playsinline preload="none" poster="rayo/animado.webp" aria-label="Avance sin sonido: reel animado con personaje"><source src="rayo/animado.mp4" type="video/mp4"></video><p class="tipo">Animado con tu personaje</p><p class="para">Tu marca habla por ti, con voz y movimiento. No tienes que grabarte.</p></figure>
+      <figure><video muted loop playsinline preload="none" poster="rayo/explicar.webp" aria-label="Avance sin sonido: reel que explica una idea difícil"><source src="rayo/explicar.mp4" type="video/mp4"></video><p class="tipo">Lo difícil, fácil</p><p class="para">Lo que cuesta explicar de tu servicio, contado en un minuto.</p></figure>
+      <figure><video muted loop playsinline preload="none" poster="rayo/historia.webp" aria-label="Avance sin sonido: reel de historia con personaje"><source src="rayo/historia.mp4" type="video/mp4"></video><p class="tipo">Una historia</p><p class="para">El antes y el después de tu cliente, en escenas.</p></figure>
+      <figure><video muted loop playsinline preload="none" poster="rayo/dato.webp" aria-label="Avance sin sonido: reel con un dato y su fuente"><source src="rayo/dato.mp4" type="video/mp4"></video><p class="tipo">Un dato que importa</p><p class="para">Una cifra animada en gráfica, con la fuente a la vista.</p></figure>
+    </div>
+  </section>
+
   <section id="trabajo">
     <h2 class="titulo">Piezas que ya salieron</h2>
     <p class="intro"><span class="mano">Los datos de los clientes van borrosos.</span></p>
@@ -499,6 +515,15 @@
       document.getElementById("ahora-mismo").hidden = false;
     })
     .catch(function () {});
+})();
+</script>
+<script>
+(function () {
+  var vs = document.querySelectorAll("#videos video");
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) { vs.forEach(function (v) { v.controls = true; }); return; }
+  if (!("IntersectionObserver" in window)) { vs.forEach(function (v) { v.controls = true; }); return; }
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () { v.controls = true; }); } else { v.pause(); } }); }, { threshold: 0.4 });
+  vs.forEach(function (v) { io.observe(v); });
 })();
 </script>
 </body>
