@@ -36,7 +36,7 @@
       "@type": "FAQPage",
       "mainEntity": [
         {"@type": "Question", "name": "¿Qué es un Fuzz?", "acceptedAnswer": {"@type": "Answer", "text": "Un agente de IA del equipo de The Fuzz-AI Lab. Cada uno resuelve un problema concreto de tu negocio: cada tarea tiene un dueño."}},
-        {"@type": "Question", "name": "¿Sale algo sin que yo lo apruebe?", "acceptedAnswer": {"@type": "Answer", "text": "No. Cada propuesta llega con su razón, y tú das el sí antes de que algo salga."}},
+        {"@type": "Question", "name": "¿Sale algo sin que yo lo apruebe?", "acceptedAnswer": {"@type": "Answer", "text": "No. Tú apruebas el plan del mes y todo lo que sale viene de ese plan."}},
         {"@type": "Question", "name": "¿Tengo que coordinar a cada Fuzz?", "acceptedAnswer": {"@type": "Answer", "text": "No. Hablas con un solo equipo y un solo responsable."}},
         {"@type": "Question", "name": "¿Qué pasa si mi negocio crece?", "acceptedAnswer": {"@type": "Answer", "text": "El equipo crece contigo: cada problema nuevo tiene un Fuzz que se encarga."}}
       ]
@@ -254,19 +254,74 @@
   :root[data-theme="dark"] .final .fila { background: #F7F1E4; border-radius: 16px; padding: 8px; }
 
 
-  /* Oficina y trabajo real */
-  .oficina { display:grid; gap:24px; grid-template-columns: 1.4fr 1fr; align-items:center; }
-  @media (max-width: 760px) { .oficina { grid-template-columns: 1fr; } }
-  .oficina img { width:100%; height:auto; display:block; border-radius:20px; border:1px solid var(--linea); }
-  .oficina .titulo { text-align:left; margin-left:0; }
-  .cifra { font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:clamp(56px,10vw,88px); line-height:.9; margin:8px 0 4px; }
-  .cifra-txt { font-weight:700; margin:0 0 6px; }
-  .nota { font-size:14px; color:var(--tinta-suave); margin:0; }
-  .trabajo { display:grid; gap:16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  /* Cifras */
+  .cifras { display:grid; gap:12px; grid-template-columns: repeat(4, 1fr); margin: 36px 0 0; }
+  @media (max-width: 760px) { .cifras { grid-template-columns: repeat(2, 1fr); } }
+  .tile { background: var(--crema-claro); border:1px solid var(--linea); border-radius:18px; padding:18px 16px; text-align:left; }
+  .tile .n { font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:clamp(44px,7vw,64px); line-height:.9; display:block; }
+  .tile .l { font-weight:700; font-size:15px; display:block; margin-top:6px; }
+  .tile .s { font-size:13px; color:var(--tinta-suave); display:block; }
+  .fuente { text-align:center; font-size:13px; color:var(--tinta-suave); margin:12px 0 0; }
+
+  /* Oficina */
+  .campus { position:relative; }
+  .campus img { width:100%; height:auto; display:block; border-radius:22px; border:1px solid var(--linea); }
+  .pisos { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:16px 0 0; padding:0; list-style:none; }
+  .pisos li { background:var(--pildora); color:#F3EBDA; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:7px 14px; border-radius:999px; }
+
+  /* Gráficas */
+  .graficas { display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .grafica { background:var(--crema-claro); border:1px solid var(--linea); border-radius:20px; padding:20px 18px 14px; }
+  .grafica h3 { margin:0; font-size:18px; }
+  .grafica .sub { margin:2px 0 14px; font-size:14px; color:var(--tinta-suave); }
+  .cols { display:flex; align-items:flex-end; gap:4px; height:180px; border-bottom:1px solid var(--linea); }
+  .col { flex:1; height:100%; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; position:relative; outline:none; }
+  .col .b { width:100%; max-width:56px; height:calc(var(--v) / var(--max) * 100%); min-height:3px; background:var(--acento); border-radius:4px 4px 0 0; }
+  .col .val { font-weight:700; font-size:14px; margin-bottom:4px; }
+  .col::after { content:attr(data-tip); position:absolute; bottom:calc(var(--v) / var(--max) * 100% + 8px); left:50%; transform:translateX(-50%); background:var(--pildora); color:#F3EBDA; font-size:13px; font-weight:600; padding:5px 9px; border-radius:8px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .12s; z-index:2; }
+  .col:hover::after, .col:focus::after { opacity:1; }
+  .col:hover .b, .col:focus .b { filter:brightness(1.25); }
+  .ejes { display:flex; gap:4px; margin-top:6px; }
+  .ejes span { flex:1; text-align:center; font-size:12px; color:var(--tinta-suave); white-space:nowrap; overflow:hidden; }
+  .tabla { margin-top:10px; font-size:13px; color:var(--tinta-suave); }
+  .tabla summary { cursor:pointer; }
+  .tabla table { border-collapse:collapse; margin-top:6px; }
+  .tabla td { padding:2px 12px 2px 0; }
+
+  /* Quién trabajó */
+  .ancho { overflow-x:auto; }
+  .ancho .cols, .ancho .caras { min-width:620px; }
+  .equipo-graf .cols { height:220px; }
+  .caras { display:flex; gap:4px; margin-top:8px; }
+  .caras figure { flex:1; margin:0; text-align:center; font-size:12px; font-weight:700; }
+  .caras img, .caras .ini { width:40px; height:40px; border-radius:50%; background:#F7F1E4; object-fit:cover; object-position:top; display:block; margin:0 auto 2px; }
+  .caras .ini { display:grid; place-items:center; font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:20px; color:#14161c; }
+
+  /* Equipo compacto */
+  .rejilla { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap:12px; }
+  .fuzz { padding:14px; }
+  .retrato { height:120px; margin-bottom:10px; }
+  .retrato img { height:112px; }
+  .fuzz .nombre { font-size:26px; }
+  .fuzz .resultado { border-top:0; padding-top:0; font-weight:600; }
+
+  /* Antes / después */
+  .versus { display:grid; gap:16px; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 680px) { .versus { grid-template-columns: 1fr; } }
+  .versus > div { border-radius:20px; padding:22px; }
+  .antes { background:var(--crema-claro); border:1px solid var(--linea); }
+  .con { background:var(--pildora); color:#F3EBDA; }
+  .versus h3 { font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:30px; margin:0 0 10px; }
+  .versus ul { list-style:none; padding:0; margin:0; }
+  .versus li { padding:9px 0; border-top:1px solid rgba(127,110,90,.35); font-weight:600; display:flex; gap:10px; }
+  .versus .x { color:var(--tinta-suave); font-weight:900; }
+  .versus .ok { color:#9ee04a; font-weight:900; }
+
+  /* Trabajo real y ahora */
+  .trabajo { display:grid; gap:16px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
   .trabajo figure { margin:0; background:var(--crema-claro); border:1px solid var(--linea); border-radius:18px; padding:10px; }
   .trabajo img { width:100%; height:auto; display:block; border-radius:12px; }
-  .trabajo figcaption { font-size:15px; padding:10px 4px 2px; }
-  .trabajo figcaption strong { display:block; }
+  .trabajo figcaption { font-size:15px; font-weight:700; padding:10px 4px 2px; }
   .ahora { display:none; max-width:720px; margin:0 auto; list-style:none; padding:0; }
   .ahora li { display:flex; gap:12px; align-items:center; padding:12px 0; border-top:1px solid var(--linea); }
   .ahora li:last-child { border-bottom:1px solid var(--linea); }
@@ -290,8 +345,8 @@
   <header class="barra">
     <a class="marca-mini" href="#inicio">The Fuzz-AI Lab</a>
     <nav>
+      <a class="ocultar" href="#numeros">Cifras</a>
       <a class="ocultar" href="#equipo">El equipo</a>
-      <a class="ocultar" href="#preguntas">Preguntas</a>
       <a class="btn btn-primario btn-chico" href="https://www.instagram.com/thefuzzailab/" target="_blank" rel="noopener">Escríbenos</a>
     </nav>
   </header>
@@ -299,98 +354,57 @@
   <div class="hero" id="inicio">
     <div class="letrero" aria-label="The Fuzz-AI Lab"><span style="color:#ffb21f">T</span><span style="color:#ff7a2e">h</span><span style="color:#9b5cf0">e</span> <span style="color:#c8cbe0">F</span><span style="color:#ff8fbf">u</span><span style="color:#35d0bd">z</span><span style="color:#3a6dff">z</span><span style="color:#ff3d3d">-</span><span style="color:#e6cfa8">A</span><span style="color:#ffa64d">I</span> <span style="color:#ffd23a">L</span><span style="color:#9ee04a">a</span><span style="color:#4a9bea">b</span></div>
     <h1>Un equipo de Fuzzies. Cada uno resuelve un problema de tu negocio.</h1>
-    <p class="bajada">Marketing como servicio con agentes de IA.</p>
+    <p class="bajada">Marketing como servicio con agentes de IA. <span class="mano">Cada tarea tiene un dueño.</span></p>
     <div class="botones">
-      <a class="btn btn-primario" href="#equipo">Conoce a tu equipo</a>
-      <a class="btn btn-secundario" href="https://www.instagram.com/thefuzzailab/" target="_blank" rel="noopener">Escríbenos en Instagram</a>
+      <a class="btn btn-primario" href="https://www.instagram.com/thefuzzailab/" target="_blank" rel="noopener">Quiero mi equipo</a>
+      <a class="btn btn-secundario" href="#numeros">Ver la oficina por dentro</a>
     </div>
-    <p class="sello">Cada tarea tiene un dueño</p>
-    <div class="foto"><img src="lab-portada.png" alt="Los Fuzzies de The Fuzz-AI Lab, cada uno con su herramienta" width="1640" height="624"></div>
+    <div class="cifras">
+      <div class="tile"><span class="n">714</span><span class="l">tareas terminadas</span><span class="s">desde el 26 de octubre</span></div>
+      <div class="tile"><span class="n">30</span><span class="l">piezas publicadas</span><span class="s">en las últimas 2 semanas</span></div>
+      <div class="tile"><span class="n">Hasta 2</span><span class="l">piezas al día</span><span class="s">por negocio</span></div>
+      <div class="tile"><span class="n">73</span><span class="l">revisiones de marca</span><span class="s">en los últimos 7 días</span></div>
+    </div>
+    <p class="fuente">Cifras del tablero de la oficina al 16 de noviembre de 2026.</p>
   </div>
 
-  <section>
-    <div class="dolor">
-      <h2 class="titulo">¿Te cansaste de cargar todo el negocio en la cabeza?</h2>
-      <p>Hacerlo por separado cuesta más de lo que parece: reuniones con cada proveedor, preguntas de «¿ya salió?», correcciones y cifras que nadie junta.</p>
+  <section id="oficina">
+    <h2 class="titulo">Así se ve la oficina hoy</h2>
+    <p class="intro">Un piso por equipo. <span class="mano">Cada Fuzz en su escritorio.</span></p>
+    <div class="campus"><img src="oficina/campus.webp" alt="La oficina en 3D de The Fuzz-AI Lab: un campus con un piso por equipo" width="1600" height="691" loading="lazy"></div>
+    <ul class="pisos"><li>Investigación</li><li>Estrategia</li><li>Creativo</li><li>Comunicación</li><li>Marca</li><li>Análisis</li><li>Operación</li></ul>
+  </section>
+
+  <section id="numeros">
+    <h2 class="titulo">La oficina en números</h2>
+    <p class="intro">Pasa el cursor o toca una columna para ver la cifra.</p>
+    <div class="graficas">
+      <div class="grafica"><h3>Piezas publicadas por día</h3><p class="sub">3 al 16 de noviembre</p><div class="cols"><div class="col" tabindex="0" style="--v:1;--max:5" data-tip="3 nov: 1 pieza"><div class="b"></div></div><div class="col" tabindex="0" style="--v:1;--max:5" data-tip="4 nov: 1 pieza"><div class="b"></div></div><div class="col" tabindex="0" style="--v:1;--max:5" data-tip="5 nov: 1 pieza"><div class="b"></div></div><div class="col" tabindex="0" style="--v:1;--max:5" data-tip="6 nov: 1 pieza"><div class="b"></div></div><div class="col" tabindex="0" style="--v:1;--max:5" data-tip="7 nov: 1 pieza"><div class="b"></div></div><div class="col" tabindex="0" style="--v:2;--max:5" data-tip="8 nov: 2 piezas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:5;--max:5" data-tip="9 nov: 5 piezas"><span class="val">5</span><div class="b"></div></div><div class="col" tabindex="0" style="--v:3;--max:5" data-tip="10 nov: 3 piezas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:3;--max:5" data-tip="11 nov: 3 piezas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:2;--max:5" data-tip="12 nov: 2 piezas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:3;--max:5" data-tip="13 nov: 3 piezas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:2;--max:5" data-tip="14 nov: 2 piezas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:2;--max:5" data-tip="15 nov: 2 piezas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:3;--max:5" data-tip="16 nov: 3 piezas"><span class="val">3</span><div class="b"></div></div></div><div class="ejes"><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span></div><details class="tabla"><summary>Ver como tabla</summary><table><tr><td>3 nov</td><td>1</td></tr><tr><td>4 nov</td><td>1</td></tr><tr><td>5 nov</td><td>1</td></tr><tr><td>6 nov</td><td>1</td></tr><tr><td>7 nov</td><td>1</td></tr><tr><td>8 nov</td><td>2</td></tr><tr><td>9 nov</td><td>5</td></tr><tr><td>10 nov</td><td>3</td></tr><tr><td>11 nov</td><td>3</td></tr><tr><td>12 nov</td><td>2</td></tr><tr><td>13 nov</td><td>3</td></tr><tr><td>14 nov</td><td>2</td></tr><tr><td>15 nov</td><td>2</td></tr><tr><td>16 nov</td><td>3</td></tr></table></details></div>
+      <div class="grafica"><h3>Tareas terminadas por semana</h3><p class="sub">Semanas completas desde que abrió la oficina</p><div class="cols"><div class="col" tabindex="0" style="--v:85;--max:289" data-tip="Semana del 26 oct: 85 tareas"><span class="val">85</span><div class="b"></div></div><div class="col" tabindex="0" style="--v:289;--max:289" data-tip="Semana del 2 nov: 289 tareas"><span class="val">289</span><div class="b"></div></div><div class="col" tabindex="0" style="--v:207;--max:289" data-tip="Semana del 9 nov: 207 tareas"><span class="val">207</span><div class="b"></div></div></div><div class="ejes"><span>26 oct</span><span>2 nov</span><span>9 nov</span></div><details class="tabla"><summary>Ver como tabla</summary><table><tr><td>Semana del 26 oct</td><td>85</td></tr><tr><td>Semana del 2 nov</td><td>289</td></tr><tr><td>Semana del 9 nov</td><td>207</td></tr></table></details></div>
+      <div class="grafica"><h3>Qué se publicó</h3><p class="sub">Las 30 piezas, por formato</p><div class="cols"><div class="col" tabindex="0" style="--v:15;--max:15" data-tip="Carruseles: 15"><span class="val">15</span><div class="b"></div></div><div class="col" tabindex="0" style="--v:9;--max:15" data-tip="Reels: 9"><span class="val">9</span><div class="b"></div></div><div class="col" tabindex="0" style="--v:5;--max:15" data-tip="Imágenes: 5"><span class="val">5</span><div class="b"></div></div><div class="col" tabindex="0" style="--v:1;--max:15" data-tip="Textos: 1"><span class="val">1</span><div class="b"></div></div></div><div class="ejes"><span>Carruseles</span><span>Reels</span><span>Imágenes</span><span>Textos</span></div><details class="tabla"><summary>Ver como tabla</summary><table><tr><td>Carruseles</td><td>15</td></tr><tr><td>Reels</td><td>9</td></tr><tr><td>Imágenes</td><td>5</td></tr><tr><td>Textos</td><td>1</td></tr></table></details></div>
     </div>
   </section>
 
   <section id="equipo">
-    <h2 class="titulo">Encuentra al Fuzz para cada problema</h2>
-    <p class="intro">Investigación, estrategia, contenido, distribución y medición. <span class="mano">Cada uno sabe lo suyo.</span></p>
-    <nav class="filtros" aria-label="Áreas del equipo">
-      <a href="#investigacion">Investigación</a>
-      <a href="#estrategia">Estrategia</a>
-      <a href="#contenido">Contenido</a>
-      <a href="#distribucion">Distribución</a>
-      <a href="#medicion">Medición y mejora</a>
-    </nav>
-
-    <div class="area" id="investigacion">
-      <h3>Investigación</h3>
-      <div class="rejilla">
-        <article class="fuzz"><div class="retrato"><img src="equipo/chispa.webp" alt="Chispa" loading="lazy"></div><p class="nombre">Chispa</p><p class="rol">Noticias del nicho</p><p class="que">Detecta las noticias de tu nicho que la gente está comentando, para que siempre tengas de qué hablar.</p><p class="resultado">Contenido con tema y momento.</p></article>
-        <article class="fuzz"><div class="retrato"><img src="equipo/travieso.webp" alt="Travieso" loading="lazy"></div><p class="nombre">Travieso</p><p class="rol">Tu cliente y tu sector</p><p class="que">Encuentra qué están vendiendo otros negocios de tu sector y qué le duele a tu cliente con sus palabras.</p><p class="resultado">Sabes qué decir antes de publicar.</p></article>
-      </div>
-    </div>
-
-    <div class="area" id="estrategia">
-      <h3>Estrategia</h3>
-      <div class="rejilla">
-        <article class="fuzz"><div class="retrato"><img src="equipo/nube.webp" alt="Nube" loading="lazy"></div><p class="nombre">Nube</p><p class="rol">Plan del mes</p><p class="que">Convierte tus objetivos en un plan del mes: qué se publica, cuánto y cuándo.</p><p class="resultado">Dejas de improvisar.</p></article>
-        <article class="fuzz"><div class="retrato"><span class="inicial" style="background:#ffd23a">P</span></div><p class="nombre">Productor</p><p class="rol">Producción de reels</p><p class="que">Ordena la producción de reels para que no se atrasen ni se pisen.</p><p class="resultado">Entregas a tiempo sin correr el último día.</p></article>
-      </div>
-    </div>
-
-    <div class="area" id="contenido">
-      <h3>Contenido</h3>
-      <div class="rejilla">
-        <article class="fuzz"><div class="retrato"><img src="equipo/chula.webp" alt="Chula" loading="lazy"></div><p class="nombre">Chula</p><p class="rol">Textos y guiones</p><p class="que">Escribe textos para redes, guiones y correos con el tono de tu marca.</p><p class="resultado">Publicas sin quedarte en blanco.</p></article>
-        <article class="fuzz"><div class="retrato"><img src="equipo/pixel.webp" alt="Pixel" loading="lazy"></div><p class="nombre">Pixel</p><p class="rol">Diseño</p><p class="que">Diseña carruseles, portadas e imágenes con tu identidad.</p><p class="resultado">Tu marca se ve igual en todo.</p></article>
-        <article class="fuzz"><div class="retrato"><img src="equipo/rayo.webp" alt="Rayo" loading="lazy"></div><p class="nombre">Rayo</p><p class="rol">Edición de reels</p><p class="que">Edita tus reels, con cortes, subtítulos y versiones cortas.</p><p class="resultado">Videos listos sin pasar horas en el editor.</p></article>
-        <article class="fuzz"><div class="retrato"><span class="inicial" style="background:#4a9bea">E</span></div><p class="nombre">Escenas</p><p class="rol">Guion visual</p><p class="que">Arma el guion visual de cada reel con tus personajes y escenas.</p><p class="resultado">Videos coherentes con tu marca, sin improvisar.</p></article>
-        <article class="fuzz"><div class="retrato"><img src="equipo/zen.webp" alt="Zén" loading="lazy"></div><p class="nombre">Zén</p><p class="rol">Guardiana de tu marca</p><p class="que">Revisa que cada pieza suene y se vea como tú.</p><p class="resultado">Te llega revisado, con tu voz y tu identidad.</p></article>
-      </div>
-    </div>
-
-    <div class="area" id="distribucion">
-      <h3>Distribución</h3>
-      <div class="rejilla">
-        <article class="fuzz"><div class="retrato"><img src="equipo/soli.webp" alt="Soli" loading="lazy"></div><p class="nombre">Soli</p><p class="rol">Calendario y comentarios</p><p class="que">Mantiene tu calendario publicado y deja borradores de respuesta para tus comentarios.</p><p class="resultado">Tu cuenta se mantiene activa sin estar conectado todo el día.</p></article>
-        <article class="fuzz"><div class="retrato"><img src="equipo/picaro.webp" alt="Pícaro" loading="lazy"></div><p class="nombre">Pícaro</p><p class="rol">Anuncios de Meta</p><p class="que">Revisa tus anuncios de Meta, dice qué funciona y propone cambios.</p><p class="resultado">Cada peso de pauta se mueve hacia lo que mejor responde; nada se cambia sin tu aprobación.</p></article>
-        <article class="fuzz"><div class="retrato"><img src="equipo/cosmos.webp" alt="Cosmos" loading="lazy"></div><p class="nombre">Cosmos</p><p class="rol">Correos</p><p class="que">Prepara tus correos de bienvenida, cartas y avisos.</p><p class="resultado">Tu lista recibe mensajes a tiempo y con tu voz.</p></article>
-        <article class="fuzz"><div class="retrato"><img src="equipo/lulo.webp" alt="Lulo" loading="lazy"></div><p class="nombre">Lulo</p><p class="rol">Avisos al celular</p><p class="que">Lleva las decisiones importantes a tu celular.</p><p class="resultado">No te pierdes lo urgente aunque estés lejos de la pantalla.</p></article>
-      </div>
-    </div>
-
-    <div class="area" id="medicion">
-      <h3>Medición y mejora</h3>
-      <div class="rejilla">
-        <article class="fuzz"><div class="retrato"><img src="equipo/mimo.webp" alt="Mimo" loading="lazy"></div><p class="nombre">Mimo</p><p class="rol">Resultados de la semana</p><p class="que">Cada lunes te dice qué contenido y qué anuncios funcionaron, con las cifras de Meta.</p><p class="resultado">Sabes qué repetir y qué dejar.</p></article>
-        <article class="fuzz"><div class="retrato"><img src="equipo/nexo.webp" alt="Nexo" loading="lazy"></div><p class="nombre">Nexo</p><p class="rol">Páginas y landings</p><p class="que">Arma las páginas y landings que recogen a tus clientes.</p><p class="resultado">Una página lista para captar, sin depender de un programador.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section id="oficina">
-    <div class="oficina">
-      <img src="oficina/edificio.webp" alt="La oficina en 3D de The Fuzz-AI Lab: un piso por equipo, con cada Fuzz en su escritorio" width="1400" height="666" loading="lazy">
-      <div>
-        <h2 class="titulo">Aquí trabajan</h2>
-        <p>Cada piso es un equipo. Cada Fuzz tiene su escritorio, sus tareas y su turno. <span class="mano">También publica en fin de semana.</span></p>
-        <p class="cifra">Hasta 2</p>
-        <p class="cifra-txt">piezas publicadas al día por negocio, fines de semana incluidos en las cuentas que lo piden.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="trabajo">
-    <h2 class="titulo">Esta semana en el Lab</h2>
-    <p class="intro">Piezas reales que ya salieron. <span class="mano">Los datos de los clientes van borrosos.</span></p>
-    <div class="trabajo">
-      <figure><img src="trabajo/dia-3.webp" alt="Pieza publicada en LinkedIn: cada tarea del plan tiene un dueño" width="640" height="800" loading="lazy"><figcaption><strong>Cada tarea tiene un dueño</strong>Chula, Pixel y Rayo con el mismo plan, cada uno en lo suyo.</figcaption></figure>
-      <figure><img src="trabajo/dia-5.webp" alt="Pieza publicada en LinkedIn: Zén revisa las aprobaciones de ayer" width="640" height="800" loading="lazy"><figcaption><strong>Revisar también es una tarea</strong>Zén revisa cada pieza antes de que salga, para que tu marca no dependa de la memoria de nadie.</figcaption></figure>
-      <figure><img src="trabajo/dia-6.webp" alt="Pieza publicada en LinkedIn: Rayo revisa un video antes de salir" width="640" height="800" loading="lazy"><figcaption><strong>Se corrige antes de salir</strong>Rayo mira cada video como lo verá un desconocido: en pantalla pequeña, una vez.</figcaption></figure>
+    <h2 class="titulo">Quién trabajó esta semana</h2>
+    <p class="intro">Tareas terminadas por cada Fuzz en los últimos 7 días.</p>
+    <div class="grafica equipo-graf"><div class="ancho"><div class="cols"><div class="col" tabindex="0" style="--v:77;--max:77" data-tip="Chula: 77 tareas"><span class="val">77</span><div class="b"></div></div><div class="col" tabindex="0" style="--v:73;--max:77" data-tip="Zén: 73 tareas"><span class="val">73</span><div class="b"></div></div><div class="col" tabindex="0" style="--v:43;--max:77" data-tip="Pixel: 43 tareas"><span class="val">43</span><div class="b"></div></div><div class="col" tabindex="0" style="--v:28;--max:77" data-tip="Rayo: 28 tareas"><span class="val">28</span><div class="b"></div></div><div class="col" tabindex="0" style="--v:17;--max:77" data-tip="Soli: 17 tareas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:13;--max:77" data-tip="Chispa: 13 tareas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:12;--max:77" data-tip="Travieso: 12 tareas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:10;--max:77" data-tip="Nube: 10 tareas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:6;--max:77" data-tip="Productor: 6 tareas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:5;--max:77" data-tip="Nexo: 5 tareas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:3;--max:77" data-tip="Mimo: 3 tareas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:2;--max:77" data-tip="Pícaro: 2 tareas"><div class="b"></div></div><div class="col" tabindex="0" style="--v:1;--max:77" data-tip="Cosmos: 1 tarea"><div class="b"></div></div><div class="col" tabindex="0" style="--v:1;--max:77" data-tip="Escenas: 1 tarea"><div class="b"></div></div></div><div class="caras"><figure><img src="equipo/chula.webp" alt="" loading="lazy">Chula</figure><figure><img src="equipo/zen.webp" alt="" loading="lazy">Zén</figure><figure><img src="equipo/pixel.webp" alt="" loading="lazy">Pixel</figure><figure><img src="equipo/rayo.webp" alt="" loading="lazy">Rayo</figure><figure><img src="equipo/soli.webp" alt="" loading="lazy">Soli</figure><figure><img src="equipo/chispa.webp" alt="" loading="lazy">Chispa</figure><figure><img src="equipo/travieso.webp" alt="" loading="lazy">Travieso</figure><figure><img src="equipo/nube.webp" alt="" loading="lazy">Nube</figure><figure><span class="ini" style="background:#ffd23a">P</span>Productor</figure><figure><img src="equipo/nexo.webp" alt="" loading="lazy">Nexo</figure><figure><img src="equipo/mimo.webp" alt="" loading="lazy">Mimo</figure><figure><img src="equipo/picaro.webp" alt="" loading="lazy">Pícaro</figure><figure><img src="equipo/cosmos.webp" alt="" loading="lazy">Cosmos</figure><figure><span class="ini" style="background:#4a9bea">E</span>Escenas</figure></div></div><details class="tabla"><summary>Ver como tabla</summary><table><tr><td>Chula</td><td>77</td></tr><tr><td>Zén</td><td>73</td></tr><tr><td>Pixel</td><td>43</td></tr><tr><td>Rayo</td><td>28</td></tr><tr><td>Soli</td><td>17</td></tr><tr><td>Chispa</td><td>13</td></tr><tr><td>Travieso</td><td>12</td></tr><tr><td>Nube</td><td>10</td></tr><tr><td>Productor</td><td>6</td></tr><tr><td>Nexo</td><td>5</td></tr><tr><td>Mimo</td><td>3</td></tr><tr><td>Pícaro</td><td>2</td></tr><tr><td>Cosmos</td><td>1</td></tr><tr><td>Escenas</td><td>1</td></tr></table></details></div>
+    <div class="rejilla" style="margin-top:24px">
+      <article class="fuzz"><div class="retrato"><img src="equipo/chispa.webp" alt="Chispa" loading="lazy"></div><p class="nombre">Chispa</p><p class="rol">Noticias del nicho</p><p class="resultado">Siempre tienes de qué hablar.</p></article>
+      <article class="fuzz"><div class="retrato"><img src="equipo/travieso.webp" alt="Travieso" loading="lazy"></div><p class="nombre">Travieso</p><p class="rol">Tu cliente y tu sector</p><p class="resultado">Sabes qué decir antes de publicar.</p></article>
+      <article class="fuzz"><div class="retrato"><img src="equipo/nube.webp" alt="Nube" loading="lazy"></div><p class="nombre">Nube</p><p class="rol">Plan del mes</p><p class="resultado">Dejas de improvisar.</p></article>
+      <article class="fuzz"><div class="retrato"><span class="inicial" style="background:#ffd23a">P</span></div><p class="nombre">Productor</p><p class="rol">Producción de reels</p><p class="resultado">Entregas a tiempo.</p></article>
+      <article class="fuzz"><div class="retrato"><img src="equipo/chula.webp" alt="Chula" loading="lazy"></div><p class="nombre">Chula</p><p class="rol">Textos y guiones</p><p class="resultado">Publicas sin quedarte en blanco.</p></article>
+      <article class="fuzz"><div class="retrato"><img src="equipo/pixel.webp" alt="Pixel" loading="lazy"></div><p class="nombre">Pixel</p><p class="rol">Diseño</p><p class="resultado">Tu marca se ve igual en todo.</p></article>
+      <article class="fuzz"><div class="retrato"><img src="equipo/rayo.webp" alt="Rayo" loading="lazy"></div><p class="nombre">Rayo</p><p class="rol">Edición de reels</p><p class="resultado">Videos listos sin horas de editor.</p></article>
+      <article class="fuzz"><div class="retrato"><span class="inicial" style="background:#4a9bea">E</span></div><p class="nombre">Escenas</p><p class="rol">Guion visual</p><p class="resultado">Videos coherentes con tu marca.</p></article>
+      <article class="fuzz"><div class="retrato"><img src="equipo/zen.webp" alt="Zén" loading="lazy"></div><p class="nombre">Zén</p><p class="rol">Guardiana de tu marca</p><p class="resultado">Todo te llega revisado.</p></article>
+      <article class="fuzz"><div class="retrato"><img src="equipo/soli.webp" alt="Soli" loading="lazy"></div><p class="nombre">Soli</p><p class="rol">Calendario y comentarios</p><p class="resultado">Tu cuenta nunca queda sola.</p></article>
+      <article class="fuzz"><div class="retrato"><img src="equipo/picaro.webp" alt="Pícaro" loading="lazy"></div><p class="nombre">Pícaro</p><p class="rol">Anuncios de Meta</p><p class="resultado">Cada cambio de pauta llega con su razón.</p></article>
+      <article class="fuzz"><div class="retrato"><img src="equipo/cosmos.webp" alt="Cosmos" loading="lazy"></div><p class="nombre">Cosmos</p><p class="rol">Correos</p><p class="resultado">Tu lista recibe a tiempo.</p></article>
+      <article class="fuzz"><div class="retrato"><img src="equipo/lulo.webp" alt="Lulo" loading="lazy"></div><p class="nombre">Lulo</p><p class="rol">Avisos al celular</p><p class="resultado">No te pierdes lo urgente.</p></article>
+      <article class="fuzz"><div class="retrato"><img src="equipo/mimo.webp" alt="Mimo" loading="lazy"></div><p class="nombre">Mimo</p><p class="rol">Resultados de la semana</p><p class="resultado">Sabes qué repetir y qué dejar.</p></article>
+      <article class="fuzz"><div class="retrato"><img src="equipo/nexo.webp" alt="Nexo" loading="lazy"></div><p class="nombre">Nexo</p><p class="rol">Páginas y landings</p><p class="resultado">Tu página lista para recibir clientes.</p></article>
     </div>
   </section>
 
@@ -401,44 +415,42 @@
   </section>
 
   <section>
-    <h2 class="titulo">Pídeselo como se lo pedirías a tu equipo</h2>
-    <p class="intro">Tú dices qué necesitas. <span class="mano">El Fuzz que sabe de eso responde.</span></p>
-    <div class="chat">
-      <div class="msj yo"><div class="burbuja">Soli, ¿mi calendario de esta semana ya está publicado?</div></div>
-      <div class="msj"><img src="equipo/soli.webp" alt="Soli"><div class="burbuja">Sí, y te dejé borradores de respuesta para los comentarios.</div></div>
-      <div class="msj yo"><div class="burbuja">Mimo, ¿qué funcionó la semana pasada?</div></div>
-      <div class="msj"><img src="equipo/mimo.webp" alt="Mimo"><div class="burbuja">Ya te lo dejé: qué repetir y qué dejar, con sus cifras.</div></div>
-      <div class="msj yo"><div class="burbuja">Pícaro, ¿muevo la pauta?</div></div>
-      <div class="msj"><img src="equipo/picaro.webp" alt="Pícaro"><div class="burbuja">Te propongo el cambio con su razón. Nada se mueve sin tu sí.</div></div>
+    <h2 class="titulo">Sin el Lab y con el Lab</h2>
+    <div class="versus">
+      <div class="antes"><h3>Sin el Lab</h3><ul>
+        <li><span class="x">✕</span>Un proveedor para cada cosa</li>
+        <li><span class="x">✕</span>«¿Ya salió?» todos los días</li>
+        <li><span class="x">✕</span>Cifras que nadie junta</li>
+        <li><span class="x">✕</span>Si alguien se va, se pierde todo</li>
+        <li><span class="x">✕</span>Publicas cuando hay tiempo</li>
+      </ul></div>
+      <div class="con"><h3>Con el Lab</h3><ul>
+        <li><span class="ok">✓</span>Un solo equipo y un responsable</li>
+        <li><span class="ok">✓</span>Tú apruebas el plan; todo sale de ahí</li>
+        <li><span class="ok">✓</span>Cada lunes sabes qué funcionó</li>
+        <li><span class="ok">✓</span>Si alguien falta, el trabajo sigue</li>
+        <li><span class="ok">✓</span>Publicación con rutina diaria</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section id="trabajo">
+    <h2 class="titulo">Piezas que ya salieron</h2>
+    <p class="intro"><span class="mano">Los datos de los clientes van borrosos.</span></p>
+    <div class="trabajo">
+      <figure><img src="trabajo/dia-3.webp" alt="Pieza publicada: cada tarea del plan tiene un dueño" width="640" height="800" loading="lazy"><figcaption>Cada tarea tiene un dueño</figcaption></figure>
+      <figure><img src="trabajo/dia-5.webp" alt="Pieza publicada: Zén revisa antes de que algo salga" width="640" height="800" loading="lazy"><figcaption>Zén revisa cada pieza antes de que salga</figcaption></figure>
+      <figure><img src="trabajo/dia-6.webp" alt="Pieza publicada: Rayo revisa un video antes de salir" width="640" height="800" loading="lazy"><figcaption>Se corrige antes de salir</figcaption></figure>
     </div>
   </section>
 
   <section>
-    <h2 class="titulo">Lo que cambia para tu negocio</h2>
-    <p class="intro">Cuando todo el equipo trabaja para ti.</p>
-    <ul class="beneficios">
-      <li><strong>Un solo equipo responde por todo.</strong>Ya no tienes que coordinar a un diseñador, un editor, un community y un analista. Hablas con un solo equipo y un solo responsable.</li>
-      <li><strong>Tu marca suena igual en todo.</strong>Los textos, los diseños, los videos y los correos salen con la misma voz. Eso es lo que la gente recuerda.</li>
-      <li><strong>Tu tiempo vuelve a ti.</strong>Dejas de escribir, diseñar, editar y revisar cada cifra tú solo. Lo que te toca es decidir.</li>
-      <li><strong>Lo que no funciona se ve pronto.</strong>Cada semana sabes qué contenido y qué anuncios trajeron atención, y qué dejar de hacer.</li>
-      <li><strong>Tu inversión en publicidad se mueve hacia lo que funciona.</strong>Nada se cambia sin tu aprobación, y los cambios salen con su razón.</li>
-      <li><strong>El equipo crece contigo.</strong>Si tu negocio sube, cada problema nuevo tiene un Fuzz que se encarga.</li>
-      <li><strong>Nada depende de una sola persona.</strong>Si alguien se enferma o se va, el trabajo sigue. No pierdes semanas ni conocimiento.</li>
-      <li><strong>Tu cuenta nunca queda sola.</strong>La publicación, los comentarios y los correos tienen una rutina diaria, no un "cuando alguien tenga tiempo".</li>
-      <li><strong>Tú decides, ellos ejecutan.</strong>Cada propuesta llega con su razón, y tú das el sí antes de que algo salga.</li>
-    </ul>
-  </section>
-
-  <section>
-    <div class="ahorro">
-      <h2 class="titulo">Lo que ya gastas en tiempo y en dinero, repartido en cinco lugares. Aquí lo recuperas.</h2>
-      <p>Si decides trabajar con un solo equipo, te quedas con:</p>
-      <ul>
-        <li><strong>Menos reuniones y menos mensajes.</strong> Cero "¿ya está?".</li>
-        <li><strong>Un solo lugar para revisar.</strong> Sabes qué funcionó, qué dejar y qué subir, sin esperar a que alguien te lo cuente.</li>
-        <li><strong>Un solo responsable.</strong> Hablas con un equipo, no con cuatro proveedores distintos.</li>
-      </ul>
-      <p class="cierre">Gana quien decide con un solo equipo.</p>
+    <h2 class="titulo">Pídeselo como a tu equipo</h2>
+    <div class="chat">
+      <div class="msj yo"><div class="burbuja">Mimo, ¿qué funcionó la semana pasada?</div></div>
+      <div class="msj"><img src="equipo/mimo.webp" alt="Mimo"><div class="burbuja">Ya te lo dejé: qué repetir y qué dejar, con sus cifras.</div></div>
+      <div class="msj yo"><div class="burbuja">Pícaro, ¿muevo la pauta?</div></div>
+      <div class="msj"><img src="equipo/picaro.webp" alt="Pícaro"><div class="burbuja">Te propongo el cambio con su razón. No se mueve hasta que lo apruebes.</div></div>
     </div>
   </section>
 
@@ -446,7 +458,7 @@
     <h2 class="titulo">Preguntas</h2>
     <div class="faq">
       <details><summary>¿Qué es un Fuzz?</summary><p>Un agente de IA del equipo de The Fuzz-AI Lab. Cada uno resuelve un problema concreto de tu negocio: cada tarea tiene un dueño.</p></details>
-      <details><summary>¿Sale algo sin que yo lo apruebe?</summary><p>No. Cada propuesta llega con su razón, y tú das el sí antes de que algo salga.</p></details>
+      <details><summary>¿Sale algo sin que yo lo apruebe?</summary><p>No. Tú apruebas el plan del mes y todo lo que sale viene de ese plan.</p></details>
       <details><summary>¿Tengo que coordinar a cada Fuzz?</summary><p>No. Hablas con un solo equipo y un solo responsable.</p></details>
       <details><summary>¿Qué pasa si mi negocio crece?</summary><p>El equipo crece contigo: cada problema nuevo tiene un Fuzz que se encarga.</p></details>
     </div>
@@ -458,7 +470,7 @@
     </div>
     <h2 class="titulo">¿Quieres que tu negocio tenga su propio equipo?</h2>
     <div class="botones">
-      <a class="btn btn-primario" href="https://www.instagram.com/thefuzzailab/" target="_blank" rel="noopener">Escríbenos en Instagram</a>
+      <a class="btn btn-primario" href="https://www.instagram.com/thefuzzailab/" target="_blank" rel="noopener">Quiero mi equipo</a>
     </div>
   </section>
 

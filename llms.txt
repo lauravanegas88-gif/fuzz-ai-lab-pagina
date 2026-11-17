@@ -36,12 +36,12 @@ Instagram: https://www.instagram.com/thefuzzailab/
 ## Para el dueño del negocio
 - Un solo equipo responde por todo, con un solo responsable.
 - La marca suena igual en textos, diseños, videos y correos.
-- El dueño decide; los agentes ejecutan. Cada propuesta llega con su razón y espera el sí.
+- El dueño decide; los agentes ejecutan. El dueño aprueba el plan del mes y todo sale de ahí.
 - El equipo crece con el negocio: cada problema nuevo tiene un Fuzz que se encarga.
 - Si alguien se enferma o se va, el trabajo sigue.
 
 ## Preguntas frecuentes
 - ¿Qué es un Fuzz? Un agente de IA del equipo de The Fuzz-AI Lab. Cada uno resuelve un problema concreto del negocio: cada tarea tiene un dueño.
-- ¿Sale algo sin que el dueño lo apruebe? No. Cada propuesta llega con su razón, y el dueño da el sí antes de que algo salga.
+- ¿Sale algo sin que el dueño lo apruebe? No. El dueño aprueba el plan del mes y todo lo que sale viene de ese plan.
 - ¿El dueño tiene que coordinar a cada Fuzz? No. Habla con un solo equipo y un solo responsable.
 - ¿Qué pasa si el negocio crece? El equipo crece contigo: cada problema nuevo tiene un Fuzz que se encarga.
