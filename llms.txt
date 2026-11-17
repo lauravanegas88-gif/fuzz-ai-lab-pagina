@@ -1,0 +1,41 @@
+# The Fuzz-AI Lab
+
+> Marketing como servicio con agentes de IA. Un equipo de 15 Fuzzies: cada uno resuelve un problema concreto de un negocio pequeño. Cada tarea tiene un dueño.
+
+Para personas: https://estratega.site/lab/
+Versión para agentes (datos estructurados): https://estratega.site/lab/agentes/
+Instagram: https://www.instagram.com/thefuzzailab/
+
+## Los 15 Fuzzies (qué resuelve cada uno)
+
+### Investigación
+- Chispa: detecta las noticias del nicho que la gente está comentando. Resultado: contenido con tema y momento.
+- Travieso: encuentra qué venden otros negocios del sector y qué le duele al cliente, con sus palabras. Resultado: se sabe qué decir antes de publicar.
+
+### Estrategia
+- Nube: convierte los objetivos en un plan del mes (qué se publica, cuánto y cuándo). Resultado: se deja de improvisar.
+- Productor: ordena la producción de reels para que no se atrasen ni se pisen. Resultado: entregas a tiempo.
+
+### Contenido
+- Chula: escribe textos para redes, guiones y correos con el tono de la marca.
+- Pixel: diseña carruseles, portadas e imágenes con la identidad de la marca.
+- Rayo: edita reels, con cortes, subtítulos y versiones cortas.
+- Escenas: arma el guion visual de cada reel con los personajes y escenas de la marca.
+- Zén: revisa que cada pieza suene y se vea como la marca.
+
+### Distribución
+- Soli: mantiene el calendario publicado y deja borradores de respuesta para los comentarios.
+- Pícaro: revisa los anuncios de Meta, dice qué funciona y propone cambios. Nada se cambia sin aprobación del dueño.
+- Cosmos: prepara correos de bienvenida, cartas y avisos.
+- Lulo: lleva las decisiones importantes al celular del dueño.
+
+### Medición y mejora
+- Mimo: cada lunes dice qué contenido y qué anuncios funcionaron, con las cifras de Meta.
+- Nexo: arma páginas y landings que captan clientes.
+
+## Para el dueño del negocio
+- Un solo equipo responde por todo, con un solo responsable.
+- La marca suena igual en textos, diseños, videos y correos.
+- El dueño decide; los agentes ejecutan. Cada propuesta llega con su razón y espera el sí.
+- Crecer no obliga a contratar más personas para el mismo trabajo.
+- Si alguien se enferma o se va, el trabajo sigue.
