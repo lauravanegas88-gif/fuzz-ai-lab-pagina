@@ -253,6 +253,29 @@
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .final .fila { background: #F7F1E4; border-radius: 16px; padding: 8px; } }
   :root[data-theme="dark"] .final .fila { background: #F7F1E4; border-radius: 16px; padding: 8px; }
 
+
+  /* Oficina y trabajo real */
+  .oficina { display:grid; gap:24px; grid-template-columns: 1.4fr 1fr; align-items:center; }
+  @media (max-width: 760px) { .oficina { grid-template-columns: 1fr; } }
+  .oficina img { width:100%; height:auto; display:block; border-radius:20px; border:1px solid var(--linea); }
+  .oficina .titulo { text-align:left; margin-left:0; }
+  .cifra { font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:clamp(56px,10vw,88px); line-height:.9; margin:8px 0 4px; }
+  .cifra-txt { font-weight:700; margin:0 0 6px; }
+  .nota { font-size:14px; color:var(--tinta-suave); margin:0; }
+  .trabajo { display:grid; gap:16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .trabajo figure { margin:0; background:var(--crema-claro); border:1px solid var(--linea); border-radius:18px; padding:10px; }
+  .trabajo img { width:100%; height:auto; display:block; border-radius:12px; }
+  .trabajo figcaption { font-size:15px; padding:10px 4px 2px; }
+  .trabajo figcaption strong { display:block; }
+  .ahora { display:none; max-width:720px; margin:0 auto; list-style:none; padding:0; }
+  .ahora li { display:flex; gap:12px; align-items:center; padding:12px 0; border-top:1px solid var(--linea); }
+  .ahora li:last-child { border-bottom:1px solid var(--linea); }
+  .punto { width:10px; height:10px; border-radius:50%; background:#35d0bd; flex:0 0 10px; }
+  .punto.vivo { background:#ff7a2e; animation: latido 1.6s ease-in-out infinite; }
+  @keyframes latido { 50% { opacity:.35; } }
+  @media (prefers-reduced-motion: reduce) { .punto.vivo { animation:none; } }
+  .ahora .cuando { margin-left:auto; font-size:14px; color:var(--tinta-suave); white-space:nowrap; }
+
   footer { text-align: center; color: var(--tinta-suave); font-size: 14px; padding: 56px 0 56px; }
   @media (max-width: 480px) {
     body { font-size: 16px; }
@@ -349,6 +372,34 @@
     </div>
   </section>
 
+  <section id="oficina">
+    <div class="oficina">
+      <img src="oficina/edificio.webp" alt="La oficina en 3D de The Fuzz-AI Lab: un piso por equipo, con cada Fuzz en su escritorio" width="1400" height="666" loading="lazy">
+      <div>
+        <h2 class="titulo">Aquí trabajan</h2>
+        <p>Cada piso es un equipo. Cada Fuzz tiene su escritorio, sus tareas y su turno. <span class="mano">También publica en fin de semana.</span></p>
+        <p class="cifra">Hasta 2</p>
+        <p class="cifra-txt">piezas publicadas al día por negocio, fines de semana incluidos en las cuentas que lo piden.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="trabajo">
+    <h2 class="titulo">Esta semana en el Lab</h2>
+    <p class="intro">Piezas reales que ya salieron. <span class="mano">Los datos de los clientes van borrosos.</span></p>
+    <div class="trabajo">
+      <figure><img src="trabajo/dia-3.webp" alt="Pieza publicada en LinkedIn: cada tarea del plan tiene un dueño" width="640" height="800" loading="lazy"><figcaption><strong>Cada tarea tiene un dueño</strong>Chula, Pixel y Rayo con el mismo plan, cada uno en lo suyo.</figcaption></figure>
+      <figure><img src="trabajo/dia-5.webp" alt="Pieza publicada en LinkedIn: Zén revisa las aprobaciones de ayer" width="640" height="800" loading="lazy"><figcaption><strong>Revisar también es una tarea</strong>Zén revisa cada pieza antes de que salga, para que tu marca no dependa de la memoria de nadie.</figcaption></figure>
+      <figure><img src="trabajo/dia-6.webp" alt="Pieza publicada en LinkedIn: Rayo revisa un video antes de salir" width="640" height="800" loading="lazy"><figcaption><strong>Se corrige antes de salir</strong>Rayo mira cada video como lo verá un desconocido: en pantalla pequeña, una vez.</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="ahora-mismo" hidden>
+    <h2 class="titulo">Ahora mismo en la oficina</h2>
+    <p class="intro">Lo último que se movió en el tablero. <span class="mano">Sin nombres de clientes.</span></p>
+    <ul class="ahora" id="ahora"></ul>
+  </section>
+
   <section>
     <h2 class="titulo">Pídeselo como se lo pedirías a tu equipo</h2>
     <p class="intro">Tú dices qué necesitas. <span class="mano">El Fuzz que sabe de eso responde.</span></p>
@@ -413,5 +464,30 @@
 
   <footer>The Fuzz-AI Lab · estratega.site/lab · <a href="https://estratega.site/lab/agentes/">Datos para agentes</a></footer>
 </div>
+<script>
+(function () {
+  var URL = "https://fgyjcgnnplzlmzcuejpf.supabase.co/rest/v1/rpc/lab_ahora";
+  var KEY = "sb_publishable_cGa7fwV4G9GPKXcS2AGNGQ_g3e1pjK0";
+  function hace(m) { if (m < 2) return "ahora"; if (m < 60) return "hace " + m + " min"; var h = Math.round(m / 60); return h < 24 ? "hace " + h + " h" : "ayer"; }
+  fetch(URL, { method: "POST", headers: { "apikey": KEY, "Authorization": "Bearer " + KEY, "Content-Type": "application/json" }, body: "{}" })
+    .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+    .then(function (filas) {
+      if (!filas || !filas.length) return;
+      var ul = document.getElementById("ahora");
+      filas.forEach(function (f) {
+        var li = document.createElement("li");
+        var p = document.createElement("span"); p.className = "punto" + (f.estado === "en-curso" ? " vivo" : "");
+        var t = document.createElement("span");
+        var rev = f.fuzz === "Zén";
+        t.textContent = f.fuzz + (f.estado === "en-curso" ? (rev ? " está revisando " : " está trabajando en ") : (rev ? " revisó " : " terminó ")) + f.pieza;
+        var c = document.createElement("span"); c.className = "cuando"; c.textContent = hace(f.hace_min);
+        li.appendChild(p); li.appendChild(t); li.appendChild(c); ul.appendChild(li);
+      });
+      ul.style.display = "block";
+      document.getElementById("ahora-mismo").hidden = false;
+    })
+    .catch(function () {});
+})();
+</script>
 </body>
 </html>
